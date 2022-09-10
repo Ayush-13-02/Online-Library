@@ -7,8 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{%block title%}{%endblock%}</title>
-  {% tailwind_css %}
   <link rel="stylesheet" href="../static/CSS/Home.css">
+  {% tailwind_css %}
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -72,12 +73,12 @@
         <ul
           class="flex flex-col p-4 mt-4 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium md:border-0 bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li>
-            <a href="#"
+            <a href="/home"
               class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
               aria-current="page">Home</a>
           </li>
           <li>
-            <a href="#"
+            <a href="/other"
               class="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
           </li>
           <li>
