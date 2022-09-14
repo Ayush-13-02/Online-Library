@@ -49,3 +49,8 @@
     border-radius: 2px;
     z-index: 3;
 }
+.tilbox{
+    -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
+    -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
+    transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
+}
