@@ -23,9 +23,13 @@
 }
 
 .bg-black-image {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://127.0.0.1:8000/static/Media/bg1.jpg') center/cover fixed no-repeat;
+    background:url('../Media/bgwood.jpg') center/cover no-repeat;
     width: 100%;
-    background-attachment: fixed;
+}
+
+.bg-black-image1 {
+    background: linear-gradient(rgba(64, 35, 2, 0.9), rgba(149, 76, 3, 0.8)), url('../Media/bgwood1.jpg') center/cover no-repeat;
+    width: 100%;
 }
 
 .shelf-shadows {
