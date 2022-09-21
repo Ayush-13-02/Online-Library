@@ -1,6 +1,6 @@
 .scrollbar::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 0px;
+    height: 0px;
 }
 
 .scrollbar::-webkit-scrollbar-track {
@@ -28,7 +28,7 @@
 }
 
 .bg-black-image1 {
-    background: linear-gradient(rgba(64, 35, 2, 0.9), rgba(149, 76, 3, 0.8)), url('../Media/bgwood1.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(64, 35, 2, 1), rgba(149, 76, 3, 0.7)), url('../Media/bgwood1.jpg') center/cover no-repeat;
     width: 100%;
 }
 
