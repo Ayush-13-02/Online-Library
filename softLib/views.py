@@ -1,3 +1,4 @@
+import re
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
@@ -5,7 +6,8 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 #HomePage
 def Home(request):
-    return render(request,'Books.html')
+    if request.method == 'GET':
+        return render(request,'Books.html')
 
 def Profile(request):
     return render(request,'Profile.html')
@@ -24,7 +26,7 @@ def Login(request):
         else:
             messages.error("Email or Password is wrong")
             return redirect('login')
-    else:
+    elif request.method == 'GET':
         return render(request,'Login.html')
 
 def Register(request):
@@ -46,7 +48,7 @@ def Register(request):
         else:
             HttpResponse(request,"Passward doesn't match")
             return redirect('/register')
-    else:
+    elif request.method == 'GET':
         return render(request,'Register.html')
 
 def Logout(request):
