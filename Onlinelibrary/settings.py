@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'softLib/static')
 MEDIA_ROOT = os.path.join(BASE_DIR,'')
 MEDIA_URL = '/media/'
 # Default primary key field type
