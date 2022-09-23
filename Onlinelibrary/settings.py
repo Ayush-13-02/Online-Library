@@ -60,7 +60,7 @@ ROOT_URLCONF = 'Onlinelibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'softLib/Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
