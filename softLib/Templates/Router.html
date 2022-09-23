@@ -10,8 +10,8 @@
   {% tailwind_css %}
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-  integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../static/CSS/Home.css">
 </head>
 
@@ -24,40 +24,38 @@
         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Soft Library</span>
       </a>
       <div class="flex items-center md:order-2 relative group">
-        <a href ="/login" class="hover:shadow-lg hover:-translate-y-1 hover:shadow-orange-500/50 bg-transparent mx-2 text-lg font-normal duration-500 py-3 px-4 rounded cursor-pointer active:translate-y-[2px]">Login
-        </a>
-        
-        <button type="button"
-          class="hidden mr-3 text-base bg-[#ff871c] rounded-full md:mr-0"
-          id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-          data-dropdown-placement="bottom">
-          <span class="sr-only">Open user menu</span>
-          <img class="w-11 h-11 rounded-full" src="../static/Media/bg1.jpg" alt="user photo">
-        </button>
+        {% if user.is_authenticated %}
+          <button type="button" class="mr-3 text-base bg-[#ff871c] rounded-full md:mr-0" id="user-menu-button"
+            aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <span class="sr-only">Open user menu</span>
+            <img class="w-11 h-11 rounded-full" src="../static/Media/bg1.jpg" alt="user photo">
+          </button>
+
+        {% else %}
+          <a href="/login"
+            class="hover:shadow-lg hover:-translate-y-1 hover:shadow-orange-500/50 bg-transparent mx-2 text-lg font-normal duration-500 py-3 px-4 rounded cursor-pointer active:translate-y-[2px]">Login
+          </a>
+        {% endif %}
         <!-- Dropdown menu -->
         <div
-          class="hidden absolute z-50 my-4 text-base text-white bg-[#884907f1] list-none rounded divide-y divide-gray-100 shadow-2xl top-8 right-0"
+          class="hidden group-hover:flex flex-col absolute z-50 my-4 text-base text-white bg-[#884907f1] list-none rounded divide-y divide-gray-100 shadow-2xl top-7 right-0"
           id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
           <div class="py-3 px-4">
-            <span class="block text-base text-gray-900">Bonnie Green</span>
-            <span class="block text-base font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+            <span class="block text-lg text-gray-50">Hello, {{request.user.first_name}}</span>
+            <span class="block text-base font-medium text-gray-300 truncate dark:text-gray-400">{{request.user.email}}</span>
           </div>
           <ul class="py-1 z-40" aria-labelledby="user-menu-button">
             <li>
-              <a href="#"
-                class="block py-2 px-4 text-base hover:bg-gray-100">Dashboard</a>
+              <a href="#" class="block py-2 px-4 text-base hover:bg-orange-300">Dashboard</a>
             </li>
             <li>
-              <a href="#"
-                class="block py-2 px-4 text-base hover:bg-gray-100">Settings</a>
+              <a href="/profile" class="block py-2 px-4 text-base hover:bg-orange-300">Profile</a>
             </li>
             <li>
-              <a href="#"
-                class="block py-2 px-4 text-base hover:bg-gray-100">Earnings</a>
+              <a href="#" class="block py-2 px-4 text-base hover:bg-orange-300">Settings</a>
             </li>
             <li>
-              <a href="#"
-                class="block py-2 px-4 text-base hover:bg-gray-100">Sign
+              <a href="/logout" class="block py-2 px-4 text-base hover:bg-orange-300">Sign
                 out</a>
             </li>
           </ul>
@@ -78,8 +76,7 @@
         <ul
           class="flex flex-col p-4 mt-4 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium md:border-0 bg-[#dc7e1a] dark:border-gray-700">
           <li>
-            <a href="/"
-              class="block py-2 pr-4 pl-3 text-white rounded bg-transparent md:text-[#674318] md:p-0"
+            <a href="/" class="block py-2 pr-4 pl-3 text-white rounded bg-transparent md:text-[#674318] md:p-0"
               aria-current="page">Home</a>
           </li>
           <li>
