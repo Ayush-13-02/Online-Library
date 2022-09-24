@@ -10,9 +10,10 @@ def Home(request):
         return render(request,'Books.html')
 
 def Profile(request):
-    return render(request,'Profile.html')
+    return render(request,'EProfile.html')
+def Userupload(request):
+    return render(request,'userupload.html')
 def Login(request):
-    print("Ayush Sharma",request.method)
     if request.method == 'POST':
         loginusernameame = request.POST['email']
         loginpassword = request.POST['pass']

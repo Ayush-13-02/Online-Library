@@ -9,10 +9,8 @@
   <title>{%block title%}{%endblock%}</title>
   {% tailwind_css %}
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../static/CSS/Home.css">
+  <script src="https://kit.fontawesome.com/5162bc258a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,7 +19,7 @@
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <a href="https://flowbite.com/" class="flex items-center">
         <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo">
-        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Soft Library</span>
+        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">EBook Library</span>
       </a>
       <div class="flex items-center md:order-2 relative group">
         {% if user.is_authenticated %}

@@ -1,0 +1,161 @@
+<!-- component -->
+{%extends 'Router.html'%}
+{%block title%}Online Library{%endblock%}
+{%block body%}
+<div x-data="setup()" x-init="$refs.loading.classList.add('hidden');" class="mt-0 bg-gray-50">
+    <div class="flex h-screen container mx-auto antialiased text-gray-900 bg-gray-50 dark:bg-dark dark:text-light">
+        <!-- Loading screen -->
+        <div x-ref="loading"
+            class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-blue-600">
+            Loading.....
+        </div>
+
+        <!-- Sidebar -->
+        <div x-transition:enter="transform transition-transform duration-300"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transform transition-transform duration-300" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full" x-show="isSidebarOpen"
+            class="fixed inset-y-0 z-10 flex w-80 top-20">
+            <!-- Curvy shape -->
+            <svg class="absolute inset-0 w-full h-full text-white" style="filter: drop-shadow(10px 0 10px #00000030)"
+                preserveAspectRatio="none" viewBox="0 0 309 800" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M268.487 0H0V800H247.32C207.957 725 207.975 492.294 268.487 367.647C329 243 314.906 53.4314 268.487 0Z" />
+            </svg>
+            <!-- Sidebar content -->
+            <div class="z-10 flex flex-col flex-1">
+                <div class="flex items-center justify-between flex-shrink-0 w-64 p-4">
+                    <!-- Logo -->
+                    <div class="relative flex flex-col flex-auto min-w-0 p-4 overflow-hidden break-words border-0 shadow-blur rounded-2xl bg-white/80 bg-clip-border mb-4 draggable"
+                        draggable="true">
+                        <div class="flex flex-wrap -mx-3">
+                            <div class="flex-none w-auto max-w-full px-3">
+                                <div
+                                    class="text-size-base ease-soft-in-out h-16 w-16 relative inline-flex items-center justify-center rounded-xl text-white transition-all duration-200">
+                                    <img src="https://demos.creative-tim.com/soft-ui-dashboard-tailwind/assets/img/bruce-mars.jpg"
+                                        alt="profile_image" class="w-full shadow-soft-sm rounded-xl">
+                                </div>
+                            </div>
+                            <div class="flex-none w-auto max-w-full px-3 my-auto">
+                                <div class="h-full">
+                                    <h5 class="mb-1">Alec Thompson</h5>
+                                    <p class="mb-0 font-semibold leading-normal text-size-sm">CEO / Co-Founder</p>
+                                </div>
+                            </div>
+                            <div
+                                class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Close btn -->
+                    <button @click="isSidebarOpen = false"
+                        class="p-1 ml-1 rounded-lg focus:outline-none focus:ring block md:hidden">
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span class="sr-only">Close sidebar</span>
+                    </button>
+                </div>
+                <nav class="flex flex-col flex-1 w-64 p-4 mt-4">
+                    <a onclick="Editprofle()" href="/profile"
+                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <span>Edit Pofile</span>
+                    </a>
+
+                    <a onclick="Upload()"href="/Uupload"
+                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>Uploads</span>
+                    </a>
+                    <a onclick="Book()" href="#"
+                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <span>Save Books</span>
+                    </a>
+                </nav>
+                <div class="flex-shrink-0 p-4">
+                    <button class="flex items-center space-x-2">
+                        <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <main class="relative container flex flex-col items-center justify-center flex-1">
+            <!-- Page content -->
+            <button @click="isSidebarOpen = true"
+                class="absolute top-24 p-2 text-white bg-black rounded-lg left-5 sm:left-12">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <span class="sr-only">Open menu</span>
+            </button>
+            <div class="container">
+                <div id="profile" class="max-h-full items-center justify-center md:mt-16" style="display: flex;">
+                    {%block Eprofile%}{%endblock%}
+                </div>
+                <div id="upload" class="max-h-full items-center justify-center md:mt-96" style="display: none;">{%block upload%}{%endblock%}</div>
+                <div id="book" class="max-h-full items-center justify-center md:mt-96" style="display: none;">{%block savebook%}{%endblock%}</div>
+            </div>
+        </main>
+    </div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
+<script>
+    const setup = () => {
+        return {
+            isSidebarOpen: true,
+            isEditprofileopen: true,
+            isUploadsopen: false,
+            isBooksopen: false
+        }
+    }
+
+    $("#profile").click(function(event){
+        event.preventDefault();
+        var x = document.getElementById("profile");
+        var y = document.getElementById("upload");
+        var z = document.getElementById("book");
+        console.log("Hi",x.style.display);
+        x.style.display = "flex";
+        y.style.display = "none";
+        z.style.display = "none";
+    })
+    // function Upload() {
+    //     var x = document.getElementById("profile");
+    //     var y = document.getElementById("upload");
+    //     var z = document.getElementById("book");
+    //     console.log("Hi",x.style.display);
+    //     x.style.display = "flex";
+    //     y.style.display = "none";
+    //     z.style.display = "none";
+    // }
+    function Editprofile() {
+        var x = document.getElementById("profile");
+        var y = document.getElementById("upload");
+        var z = document.getElementById("book");
+        console.log("Hi",x.style.display);
+        x.style.display = "none";
+        y.style.display = "flex";
+        z.style.display = "none";
+    }
+    function Book() {
+        var x = document.getElementById("profile");
+        var y = document.getElementById("upload");
+        var z = document.getElementById("book");
+        console.log("Hi",x.style.display);
+        x.style.display = "none";
+        y.style.display = "none";
+        z.style.display = "flex";
+    }
+</script>
+{% endblock %}
