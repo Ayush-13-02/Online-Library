@@ -1,18 +1,30 @@
-import re
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+
 #HomePage
 def Home(request):
     if request.method == 'GET':
         return render(request,'Books.html')
 
 def Profile(request):
-    return render(request,'EProfile.html')
+    params = {
+        'edit':True,
+        'upload':False,
+        'save':False
+    }
+    return render(request,'EProfile.html',params)
+ 
 def Userupload(request):
-    return render(request,'userupload.html')
+    params = {
+        'edit':False,
+        'upload':True,
+        'save':False
+    }
+    return render(request,'userupload.html',params)
+
 def Login(request):
     if request.method == 'POST':
         loginusernameame = request.POST['email']

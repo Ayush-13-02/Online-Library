@@ -27,6 +27,10 @@
     width: 100%;
 }
 
+.bg-black-image2 {
+    background:url('https://ii1.pepperfry.com/media/catalog/product/h/a/800x880/hayao-8-cube-book-shelf-in-wenge-finish---mintwud-by-pepperfry-hayao-8-cube-book-shelf-in-wenge-fini-dcut11.jpg') center/cover no-repeat;
+    width: 100%;
+}
 .bg-black-image1 {
     background: linear-gradient(rgba(64, 35, 2, 1), rgba(149, 76, 3, 0.7)), url('../Media/bgwood1.jpg') center/cover no-repeat;
     width: 100%;
@@ -57,4 +61,35 @@
     -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
     -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
     transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
+}
+
+.carousel.pointer-event {
+    touch-action: pan-y;
+}
+
+.carousel-indicators {
+    z-index: 2;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+}
+
+.carousel-item {
+    display: none;
+    margin-right: -100%;
+    backface-visibility: hidden;
+    transition: transform .6s ease-in-out;
+}
+
+._3ChZRr ._3eARKq {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    position: relative;
+    transition: -webkit-transform .2s ease-out;
+    transition: transform .2s ease-out;
+    transition: transform .2s ease-out,-webkit-transform .2s ease-out;
 }

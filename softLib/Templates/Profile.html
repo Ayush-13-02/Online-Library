@@ -65,7 +65,7 @@
                         <span>Edit Pofile</span>
                     </a>
 
-                    <a onclick="Upload()"href="/Uupload"
+                    <a onclick="Upload(e)"href="/Uupload"
                         class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
                         <i class="fa-solid fa-upload"></i>
                         <span>Uploads</span>
@@ -99,16 +99,20 @@
                 <span class="sr-only">Open menu</span>
             </button>
             <div class="container">
-                <div id="profile" class="max-h-full items-center justify-center md:mt-16" style="display: flex;">
+                {%if edit %}
+                <div x-show= "{{edit}}" id="profile" class="flex max-h-full items-center justify-center md:mt-16">
                     {%block Eprofile%}{%endblock%}
                 </div>
-                <div id="upload" class="max-h-full items-center justify-center md:mt-96" style="display: none;">{%block upload%}{%endblock%}</div>
+                {%elif upload %}
+                <div x-show= "{{upload}}" id="upload" class="flex max-h-full items-center justify-center md:mt-96">{%block upload%}{%endblock%}</div>
+                {%elif save %}
                 <div id="book" class="max-h-full items-center justify-center md:mt-96" style="display: none;">{%block savebook%}{%endblock%}</div>
+                {% endif%}
             </div>
         </main>
     </div>
 </div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
 <script>
     const setup = () => {
@@ -119,9 +123,19 @@
             isBooksopen: false
         }
     }
+    // $("#profile").click(function(event){
+    //     event.preventDefault();
+    //     var x = document.getElementById("profile");
+    //     var y = document.getElementById("upload");
+    //     var z = document.getElementById("book");
+    //     console.log("Hi",x.style.display);
+    //     x.style.display = "none";
+    //     y.style.display = "flex";
+    //     z.style.display = "none";
+    // })
 
-    $("#profile").click(function(event){
-        event.preventDefault();
+    function Upload(e) {
+        e.preventDefault();
         var x = document.getElementById("profile");
         var y = document.getElementById("upload");
         var z = document.getElementById("book");
@@ -129,16 +143,7 @@
         x.style.display = "flex";
         y.style.display = "none";
         z.style.display = "none";
-    })
-    // function Upload() {
-    //     var x = document.getElementById("profile");
-    //     var y = document.getElementById("upload");
-    //     var z = document.getElementById("book");
-    //     console.log("Hi",x.style.display);
-    //     x.style.display = "flex";
-    //     y.style.display = "none";
-    //     z.style.display = "none";
-    // }
+    }
     function Editprofile() {
         var x = document.getElementById("profile");
         var y = document.getElementById("upload");
