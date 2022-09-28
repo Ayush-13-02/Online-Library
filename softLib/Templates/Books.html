@@ -1,16 +1,16 @@
 {%extends 'Router.html'%}
 {%block title%}Online Library{%endblock%}
 {%block body%}
-<div class="bg-black-image1 p-4 w-full h-full">
+<div class="bg-slate-100 p-4 w-full h-full">
     <div class="container p-4 w-full flex flex-col lg:flex-row items-center justify-between mt-16 mx-auto">
         <div class="px-2 py-6 lg:w-[calc(100%-28rem)]">
-            <div class="flex items-center justify-center font-bold text-white text-4xl sm:text-6xl p-2">
+            <div class="flex items-center justify-center font-bold text-gray-700 text-4xl sm:text-6xl p-2">
                 <div class="w-10 h-10 sm:w-14 sm:h-14 border-2 border-black mr-1 mt-1 rounded-full overflow-hidden">
                     <img src="../static/Media/bga2.jpg" alt="..." class="w-full h-full">
                 </div>
                 nline Library
             </div>
-            <h6 class="text-2xl text-center m-2 font-medium text-white">(Download and preview soft copy of books)</h6>
+            <h6 class="text-2xl text-center m-2 font-medium text-gray-500">(Download and preview soft copy of books)</h6>
             <form class="flex items-center w-11/12 md:w-3/4 mx-auto mt-10">
                 <label for="voice-search" class="sr-only">Search</label>
                 <div class="relative w-full">
@@ -42,15 +42,15 @@
         </div>
     </div>
     <!-- component -->
-    <div class="container shadow-2xl mx-auto h-full bg-black-image my-4 overflow-hidden">
+    <div class="container shadow-2xl w-4/5 mx-auto pr-4 h-full bg-black-image my-4 overflow-hidden">
         <dh-component>
             <div class="flex flex-no-wrap">
                 <!-- Sidebar starts -->
                 <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
                 <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-                <div class="w-64 absolute sm:relative shadow-2xl h-auto flex-col justify-between hidden sm:flex">
+                <div class="w-56 absolute sm:relative shadow-2xl h-auto flex-col justify-between hidden sm:flex">
                     <div class="px-8 h-full">
-                        <div class="h-16 p-4 text-5xl text-gray-50 font-bold italic w-full flex items-center my-4">
+                        <div class="h-16 p-4 text-4xl text-gray-50 font-bold italic w-full flex items-center my-4">
                             EBooks
                         </div>
                     </div>
@@ -112,13 +112,13 @@
                             class="focus:outline-none focus:ring-1 focus:ring-gray-100 rounded text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-3"
                             type="text" placeholder="Search">
                     </div>
-                    <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
+
                     {% for i in "Ayush" %}
                     <div
                         class="scrollbar flex w-full h-72 snap-x snap-mandatory rounded bg-black-image1 shadow-inner drop-shadow-2xl border-gray-300 overflow-y-hidden">
                         <!-- Place your content here -->
                             {% for i in "AyushSharma" %}
-                            <div class="shadow-inner snap-center shrink-0 first:pl-8 last:pr-8 m-2 mx-4">
+                            <div class="shadow-inner snap-start shrink-0 first:pl-8 last:pr-8 m-2 mx-4">
                                 <img class="shrink-0 h-[80%] mt-8 hover:scale-105 duration-300"
                                     src="../static/Media/book4.jpg">
                             </div>
