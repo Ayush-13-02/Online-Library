@@ -1,7 +1,7 @@
 {%extends 'Router.html'%}
 {%block title%}Online Library{%endblock%}
 {%block body%}
-<div class="bg-slate-100 p-4 w-full h-full">
+<div class="bg-black-image2 p-4 w-full h-full">
     <div class="container p-4 w-full flex flex-col lg:flex-row items-center justify-between mt-16 mx-auto">
         <div class="px-2 py-6 lg:w-[calc(100%-28rem)]">
             <div class="flex items-center justify-center font-bold text-gray-700 text-4xl sm:text-6xl p-2">
@@ -42,63 +42,18 @@
         </div>
     </div>
     <!-- component -->
-    <div class="container shadow-2xl w-4/5 mx-auto pr-4 h-full bg-black-image my-4 overflow-hidden">
+    <div class="container shadow-2xl w-4/5 mx-auto h-full bg-black-image my-4 overflow-hidden rounded">
         <dh-component>
             <div class="flex flex-no-wrap">
                 <!-- Sidebar starts -->
                 <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
                 <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-                <div class="w-56 absolute sm:relative shadow-2xl h-auto flex-col justify-between hidden sm:flex">
-                    <div class="px-8 h-full">
-                        <div class="h-16 p-4 text-4xl text-gray-50 font-bold italic w-full flex items-center my-4">
-                            EBooks
-                        </div>
-                    </div>
-                    <div class="px-8 border-t border-gray-700">
-
-                    </div>
-                </div>
-                <div class="w-64 z-40 absolute shadow-inner md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out"
-                    id="mobile-nav">
-                    <button aria-label="toggle sidebar" id="openSideBar"
-                        class="h-10 w-10 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 rounded focus:ring-gray-800"
-                        onclick="sidebarHandler(true)">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments"
-                            width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <circle cx="6" cy="10" r="2" />
-                            <line x1="6" y1="4" x2="6" y2="8" />
-                            <line x1="6" y1="12" x2="6" y2="20" />
-                            <circle cx="12" cy="16" r="2" />
-                            <line x1="12" y1="4" x2="12" y2="14" />
-                            <line x1="12" y1="18" x2="12" y2="20" />
-                            <circle cx="18" cy="7" r="2" />
-                            <line x1="18" y1="4" x2="18" y2="5" />
-                            <line x1="18" y1="9" x2="18" y2="20" />
-                        </svg>
-                    </button>
-                    <button aria-label="Close sidebar" id="closeSideBar"
-                        class="h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer"
-                        onclick="sidebarHandler(false)">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20"
-                            height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <line x1="18" y1="6" x2="6" y2="18" />
-                            <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg>
-                    </button>
-                    <div class="px-8">
-                        <div class="h-16 w-full flex items-center">
-
-                        </div>
-                    </div>
-                </div>
+                
+                
                 <!-- Sidebar ends -->
                 <!-- Remove class [ h-64 ] when adding a card block -->
-                <div class="container mx-4 shadow pb-10 w-[76%]">
-                    <div class="flex w-fit mx-auto relative my-5">
+                <div class="container mx-auto shadow pb-10 w-[90%]">
+                    <div class="flex w-1/2 mx-auto relative my-5">
                         <div class="text-gray-300 absolute ml-4 inset-0 m-auto w-4 h-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search"
                                 width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -109,11 +64,12 @@
                             </svg>
                         </div>
                         <input
-                            class="focus:outline-none focus:ring-1 focus:ring-gray-100 rounded text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-3"
+                            class="w-full focus:outline-none focus:ring-1 focus:ring-gray-100 rounded text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-3"
                             type="text" placeholder="Search">
                     </div>
 
                     {% for i in "Ayush" %}
+                    <div></div>
                     <div
                         class="scrollbar flex w-full h-72 snap-x snap-mandatory rounded bg-black-image1 shadow-inner drop-shadow-2xl border-gray-300 overflow-y-hidden">
                         <!-- Place your content here -->

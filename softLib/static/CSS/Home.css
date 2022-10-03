@@ -23,11 +23,12 @@
 }
 
 .bg-black-image {
-    background:url('../Media/bgwood.jpg') center/cover no-repeat;
+    background:linear-gradient(rgb(237, 179, 113,0.2), rgba(247, 214, 182, 0.1)), url('../Media/bgwood.jpg') center/cover no-repeat;
 }
 
 .bg-black-image2 {
-    background:url('https://ii1.pepperfry.com/media/catalog/product/h/a/800x880/hayao-8-cube-book-shelf-in-wenge-finish---mintwud-by-pepperfry-hayao-8-cube-book-shelf-in-wenge-fini-dcut11.jpg') center/cover no-repeat;
+    background:url('https://cdn.pixabay.com/photo/2017/01/01/11/19/interior-1944348__340.jpg') center/cover no-repeat;
+    background-attachment: fixed;
     width: 100%;
 }
 .bg-black-image1 {
