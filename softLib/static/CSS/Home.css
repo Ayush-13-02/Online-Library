@@ -23,21 +23,28 @@
 }
 
 .bg-black-image {
-    background:linear-gradient(rgb(237, 179, 113,0.2), rgba(247, 214, 182, 0.1)), url('../Media/bgwood.jpg') center/cover no-repeat;
+    background: linear-gradient(rgb(237, 179, 113, 0.2), rgba(247, 214, 182, 0.1)), url('../Media/bgwood.jpg') center/cover no-repeat;
 }
 
 .bg-black-image2 {
-    background:url('https://cdn.pixabay.com/photo/2017/01/01/11/19/interior-1944348__340.jpg') center/cover no-repeat;
+    background: url('https://cdn.pixabay.com/photo/2017/01/01/11/19/interior-1944348__340.jpg') center/cover no-repeat;
     background-attachment: fixed;
     width: 100%;
+    height: 100%;
 }
+
 .bg-black-image1 {
     background: linear-gradient(rgba(64, 35, 2, 1), rgba(149, 76, 3, 0.7)), url('../Media/bgwood1.jpg') center/cover no-repeat;
     width: 100%;
 }
 
-.tilbox{
+.tilbox {
     -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
     -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
     transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(60deg);
+}
+
+.clearNav {
+    backdrop-filter: saturate(180%) blur(5px) !important;
+    /* background-color: rgba(0, 0, 0, 0.8) !important; */
 }

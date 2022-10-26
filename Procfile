@@ -1,1 +1,1 @@
-web: gunicorn Onlinelibrary.wsgi:application --log-file -
+web: waitress-serve --port=8000 Onlinelibrary.wsgi:application

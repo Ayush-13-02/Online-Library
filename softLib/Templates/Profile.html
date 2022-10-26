@@ -115,13 +115,13 @@
             </button>
             <div class="container h-full">
                 {%if edit %}
-                <div x-show= "{{edit}}" id="profile" class="flex h-full items-center justify-center md:mt-16">
+                <div x-show= "{{edit}}" id="profile" class="flex h-full items-center justify-center">
                     {%block Eprofile%}{%endblock%}
                 </div>
                 {%elif upload %}
                 <div x-show= "{{upload}}" id="upload" class="flex h-full items-center justify-center md:mt-16">{%block upload%}{%endblock%}</div>
                 {%elif save %}
-                <div id="book" class="max-h-full items-center justify-center md:mt-96" style="display: none;">{%block savebook%}{%endblock%}</div>
+                <div id="book" class="max-h-full items-center justify-center md:mt-16" style="display: none;">{%block savebook%}{%endblock%}</div>
                 {% endif%}
             </div>
         </main>
