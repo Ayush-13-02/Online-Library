@@ -1,12 +1,10 @@
-from email.mime import image
-from unicodedata import name
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from softLib.models import Book
-from django.conf import settings
+from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 #HomePage
 def Home(request):
     if request.method == 'GET':
@@ -34,7 +32,8 @@ def Userupload(request):
         'save':False
     }
     return render(request,'userupload.html',params)
-
+@csrf_protect
+@ensure_csrf_cookie
 def Login(request):
     if request.method == 'POST':
         loginusernameame = request.POST['email']
