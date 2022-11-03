@@ -8,13 +8,16 @@ from django.contrib import messages
 def Home(request):
     if request.method == 'GET':
         return render(request,'Books.html')
-
+def Book(request):
+    if request.method == 'GET':
+        return render(request,'Book.html')
 def Profile(request):
     params = {
         'edit':True,
         'upload':False,
         'save':False
     }
+
     return render(request,'EProfile.html',params)
  
 def Userupload(request):

@@ -4,30 +4,38 @@
 <div class="bg-black-image2 w-full h-full pb-2">
     <div class="relative w-full p-0 flex flex-col items-center justify-between mb-32">
         <div class="flex w-full h-[500px] items-center overflow-hidden">
-            <video class="w-screen opacity-100 transition-all" autoplay="" muted="" loop="" playsinline="" data-hero-video="" data-src-lg="https://cdn.dribbble.com/uploads/39417/original/49dbf46eae15d227fc95a69cee31251e.mp4?1657824906" data-src-sm="https://cdn.dribbble.com/uploads/39418/original/0cc960a3bf612d0badc4f6165eb36f7b.mp4?1657824915">
+            <video class="w-screen opacity-100 transition-all" autoplay="" muted="" loop="" playsinline=""
+                data-hero-video=""
+                data-src-lg="https://cdn.dribbble.com/uploads/39417/original/49dbf46eae15d227fc95a69cee31251e.mp4?1657824906"
+                data-src-sm="https://cdn.dribbble.com/uploads/39418/original/0cc960a3bf612d0badc4f6165eb36f7b.mp4?1657824915">
                 <source src="../static/Media/bg-vedio2.mp4" type="video/mp4">
             </video>
         </div>
         <div class="absolute top-0 w-full h-full bg-black bg-opacity-60">
-            <h2 class="text-3xl mt-[10%] mx-auto text-center text-white font-semibold max-w-sm">Explore the World's leading Online Library</h2>
-            <h2 class="text-xl mt-4 mx-auto text-center text-white font-semibold max-w-3xl">Millions of designers and agencies around the world showcase their portfolio work on Dribbble - the home to the world’s best design and creative professionals.</h2>
+            <h2 class="text-3xl mt-[10%] mx-auto text-center text-white font-semibold max-w-sm">Explore the World's
+                leading Online Library</h2>
+            <h2 class="text-xl mt-4 mx-auto text-center text-white font-semibold max-w-3xl">Millions of designers and
+                agencies around the world showcase their portfolio work on Dribbble - the home to the world’s best
+                design and creative professionals.</h2>
         </div>
         <div class="absolute -bottom-20 z-20 max-w-5xl flex -m-4 text-center w-full mt-32">
             {% for i in "1234" %}
             <div class="p-4 w-full text-white">
-              <div class="border-2 border-gray-200 bg-white text-blue-800 px-2 md:px-4 py-3 md:py-6 rounded-lg hover:scale-105 duration-200">
-                <svg fill="none" stroke="blue" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-8 md:w-12 h-8 md:h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                  <path d="M8 17l4 4 4-4m-4-5v9"></path>
-                  <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
-                </svg>
-                <h2 class="title-font font-medium text-xl md:text-3xl text-blue-900">2.7K</h2>
-                <p class="leading-relaxed">Downloads</p>
-              </div>
+                <div
+                    class="border-2 border-gray-200 bg-white text-blue-800 px-2 md:px-4 py-3 md:py-6 rounded-lg hover:scale-105 duration-200">
+                    <svg fill="none" stroke="blue" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="text-indigo-500 w-8 md:w-12 h-8 md:h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                        <path d="M8 17l4 4 4-4m-4-5v9"></path>
+                        <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
+                    </svg>
+                    <h2 class="title-font font-medium text-xl md:text-3xl text-blue-900">2.7K</h2>
+                    <p class="leading-relaxed">Downloads</p>
+                </div>
             </div>
             {% endfor %}
-        </div>  
+        </div>
     </div>
-    
+
     <!-- component -->
     <div class="container shadow-2xl w-4/5 mx-auto h-full bg-black-image my-4 overflow-hidden rounded">
         <dh-component>
@@ -35,8 +43,8 @@
                 <!-- Sidebar starts -->
                 <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
                 <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-                
-                
+
+
                 <!-- Sidebar ends -->
                 <!-- Remove class [ h-64 ] when adding a card block -->
                 <div class="container mx-auto shadow pb-10 w-[90%]">
@@ -56,44 +64,51 @@
                     </div>
 
                     {% for i in "Ayush" %}
-                    <div></div>
-                    <div
-                        class="scrollbar flex w-full h-72 snap-x snap-mandatory rounded bg-black-image1 shadow-inner drop-shadow-2xl border-gray-300 overflow-y-hidden">
-                        <!-- Place your content here -->
-                            {% for i in "AyushSharma" %}
-                            <div class="shadow-inner snap-start shrink-0 first:pl-8 last:pr-8 m-2 mx-4">
-                                <img class="shrink-0 h-[80%] mt-8 hover:scale-105 duration-300"
-                                    src="../static/Media/book3.jpg">
-                            </div>
+                    <div id="scrollcontrol-{{i}}" class="relative">
+                        <h1 class="text-white mx-3 my-2 font-semibold text-2xl">Category</h1>
+                        <div class="cards scrollbar flex w-full h-72 snap-x snap-mandatory rounded bg-black-image1 shadow-inner drop-shadow-2xl border-gray-300 overflow-y-hidden scroll-smooth">
+                            <!-- Place your content here -->
+                            {% for j in "AyushSharma" %}
+                            <a href="/book" class="shadow-inner snap-start shrink-0 first:pl-8 last:pr-8 m-2 mx-4">
+                                <img class="shrink-0 h-[80%] mt-8 hover:scale-105 active:scale-100 duration-300"
+                                    src="../static/Media/book4.jpg">
+                            </a>
                             {% endfor %}
-                        <!-- <div class="h-full">
-                            <img src="../static/Media/book2.png" alt="..." class="h-[90%] mt-4">
-                        </div> -->
-
-                        <!-- <div class="w-32 h-full">
-                            <img src="../static/Media/book2.png" alt="..." class="w-full h-[90%] mt-4">
-                        </div> -->
+                        </div>
+                        <button
+                            class='z-40 absolute top-[50%] left-0 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[1px] rotate-180' onclick="scrollPrevPage('{{i}}');">
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                class='bg-orange-50 rounded-full'>
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg>
+                        </button>
+                        <button
+                            class='z-40 absolute top-[50%] -right-1 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[1px]' onclick="scrollNextPage('{{i}}');">
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                class='bg-orange-50 rounded-full'>
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg>
+                        </button>
                     </div>
-                    <div class="w-full h-6 shadow-2xl"></div>
+                    <!-- <div class="w-full h-1 shadow-2xl"></div> -->
                     {% endfor %}
                 </div>
             </div>
             <script>
-                var sideBar = document.getElementById("mobile-nav");
-                var openSidebar = document.getElementById("openSideBar");
-                var closeSidebar = document.getElementById("closeSideBar");
-                sideBar.style.transform = "translateX(-260px)";
-
-                function sidebarHandler(flag) {
-                    if (flag) {
-                        sideBar.style.transform = "translateX(0px)";
-                        openSidebar.classList.add("hidden");
-                        closeSidebar.classList.remove("hidden");
-                    } else {
-                        sideBar.style.transform = "translateX(-260px)";
-                        closeSidebar.classList.add("hidden");
-                        openSidebar.classList.remove("hidden");
-                    }
+                
+                function scrollNextPage(i) {
+                    console.log(i);
+                    const gallery = document.querySelector(`#scrollcontrol-${i}`);
+                    const gallery_scroller = gallery.querySelector('.cards');
+                    const gallery_item_size = gallery_scroller.querySelector('div').clientWidth;
+                    gallery_scroller.scrollBy(gallery_item_size, 0);
+                }
+                function scrollPrevPage(i) {
+                    console.log(i);
+                    const gallery = document.querySelector(`#scrollcontrol-${i}`);
+                    const gallery_scroller = gallery.querySelector('.cards');
+                    const gallery_item_size = gallery_scroller.querySelector('div').clientWidth;
+                    gallery_scroller.scrollBy(-gallery_item_size, 0);
                 }
             </script>
 

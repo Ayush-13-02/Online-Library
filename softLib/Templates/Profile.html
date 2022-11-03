@@ -32,7 +32,7 @@
                             <div class="flex-none w-auto max-w-full px-3">
                                 <div
                                     class="text-size-base ease-soft-in-out h-16 w-16 relative inline-flex items-center justify-center rounded-xl text-white transition-all duration-200">
-                                    <img src="https://demos.creative-tim.com/soft-ui-dashboard-tailwind/assets/img/bruce-mars.jpg"
+                                    <img src="../static/Media/unkowndp.jpg"
                                         alt="profile_image" class="w-full shadow-soft-sm rounded-xl">
                                 </div>
                             </div>
@@ -106,14 +106,14 @@
         <main class="relative container flex flex-col items-center justify-center flex-1">
             <!-- Page content -->
             <button @click="isSidebarOpen = true"
-                class="absolute top-24 p-2 text-white bg-black rounded-lg left-5 sm:left-12">
+                class="absolute top-10 md:top-20 p-2 text-white bg-black rounded-lg left-5 sm:left-12">
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
                 <span class="sr-only">Open menu</span>
             </button>
-            <div class="container h-full">
+            <div class="container h-full mt-10">
                 {%if edit %}
                 <div x-show= "{{edit}}" id="profile" class="flex h-full items-center justify-center">
                     {%block Eprofile%}{%endblock%}
