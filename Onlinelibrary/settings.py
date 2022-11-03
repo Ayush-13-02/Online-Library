@@ -107,6 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://softbooklib.herokuapp.com']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
