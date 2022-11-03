@@ -68,10 +68,10 @@
                         <h1 class="text-white mx-3 my-2 font-semibold text-2xl">Category</h1>
                         <div class="cards scrollbar flex w-full h-72 snap-x snap-mandatory rounded bg-black-image1 shadow-inner drop-shadow-2xl border-gray-300 overflow-y-hidden scroll-smooth">
                             <!-- Place your content here -->
-                            {% for j in "AyushSharma" %}
+                            {% for j in Books %}
                             <a href="/book" class="shadow-inner snap-start shrink-0 first:pl-8 last:pr-8 m-2 mx-4">
                                 <img class="shrink-0 h-[80%] mt-8 hover:scale-105 active:scale-100 duration-300"
-                                    src="../static/Media/book4.jpg">
+                                    src="/media/{{j.image}}">
                             </a>
                             {% endfor %}
                         </div>

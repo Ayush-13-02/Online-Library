@@ -1,14 +1,21 @@
+from email.mime import image
+from unicodedata import name
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-
+from softLib.models import Book
+from django.conf import settings
 #HomePage
 def Home(request):
     if request.method == 'GET':
-        return render(request,'Books.html')
-def Book(request):
+        Bookdata = Book.objects.all()
+        data = {
+            'Books': Bookdata
+        }
+        return render(request,'Books.html',data)
+def Bookone(request):
     if request.method == 'GET':
         return render(request,'Book.html')
 def Profile(request):

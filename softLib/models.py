@@ -9,8 +9,8 @@ class Book(models.Model):
     Pages = models.IntegerField(default=0)
     Size = models.FloatField(default=0)
     Description = models.TextField()
-    image = models.ImageField(upload_to="media/images", default="")
-    pdf = models.FileField(upload_to="media/pdf", default="")
+    image = models.ImageField(upload_to="images", default="")
+    pdf = models.FileField(upload_to="pdf", default="")
 
     def __str__(self):
         return self.Title
