@@ -43,10 +43,10 @@ def Login(request):
         print("Hello, ",user)
         if user is not None:
             login(request,user)
-            messages.success(request,"Successfully logged In")
+            # messages.success(request,"Successfully logged In")
             return redirect('/')
         else:
-            messages.error("Email or Password is wrong")
+            # messages.error("Email or Password is wrong")
             return redirect('login')
     elif request.method == 'GET':
         return render(request,'Login.html')
