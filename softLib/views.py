@@ -9,13 +9,23 @@ from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 def Home(request):
     if request.method == 'GET':
         Bookdata = Book.objects.all()
+        catbooks = Book.objects.values('Category')
+        catbook = {item['Category'] for item in catbooks}
         data = {
+            'Category':catbook,
             'Books': Bookdata
         }
         return render(request,'Books.html',data)
-def Bookone(request):
+def Bookone(request,rid):
     if request.method == 'GET':
-        return render(request,'Book.html')
+        book = Book.objects.filter(id=rid)
+        catbooks = Book.objects.filter(Category = book[0].Category)
+        data = {
+            'Category':catbooks,
+            'book': book[0]
+        }
+        print(book)
+        return render(request,'Book.html',data)
 def Profile(request):
     params = {
         'edit':True,
@@ -26,12 +36,28 @@ def Profile(request):
     return render(request,'EProfile.html',params)
  
 def Userupload(request):
-    params = {
-        'edit':False,
-        'upload':True,
-        'save':False
-    }
-    return render(request,'userupload.html',params)
+    if request.method == 'POST':
+        Title = request.POST.get('Title')
+        Category = request.POST.get('Category')
+        Author = request.POST.get('Author')
+        Cover = request.FILES.get('Cover')
+        pdf = request.FILES.get('pdf')
+        desc = request.POST.get('desc')
+        addby = request.user
+        book = Book(Title=Title,Author=Author,Category=Category,Addby=addby,Description=desc,image=Cover,pdf=pdf)
+        print("Cover- ",Cover)
+        book.save()
+        return redirect('/upload')
+
+    if request.method == 'GET':
+        myupload = Book.objects.filter(Addby = request.user)
+        params = {
+            'myupload':myupload,
+            'edit':False,
+            'upload':True,
+            'save':False
+        }
+        return render(request,'userupload.html',params)
 @csrf_protect
 @ensure_csrf_cookie
 def Login(request):
@@ -39,15 +65,14 @@ def Login(request):
         loginusernameame = request.POST['email']
         loginpassword = request.POST['pass']
         print(loginusernameame,loginpassword)
-        user = authenticate(username = loginusernameame, password = loginpassword)
-        print("Hello, ",user)
+        user = authenticate(username = loginusernameame, password = loginpassword)  
         if user is not None:
             login(request,user)
             # messages.success(request,"Successfully logged In")
             return redirect('/')
         else:
             # messages.error("Email or Password is wrong")
-            return redirect('login')
+            return redirect('/login')
     elif request.method == 'GET':
         return render(request,'Login.html')
 

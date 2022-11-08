@@ -3,7 +3,7 @@
 {%block body%}
 <div class="bg-black-image2 w-full h-full pb-2">
     <div class="relative w-full p-0 flex flex-col items-center justify-between mb-32">
-        <div class="flex w-full h-[500px] items-center overflow-hidden">
+        <div class="flex w-full h-full lg:h-[500px]  items-center overflow-hidden ">
             <video class="w-screen opacity-100 transition-all" autoplay="" muted="" loop="" playsinline=""
                 data-hero-video=""
                 data-src-lg="https://cdn.dribbble.com/uploads/39417/original/49dbf46eae15d227fc95a69cee31251e.mp4?1657824906"
@@ -11,15 +11,12 @@
                 <source src="../static/Media/bg-vedio2.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="absolute top-0 w-full h-full bg-black bg-opacity-60">
+        <div class="absolute top-0  w-full h-full bg-black bg-opacity-60">
             <h2 class="text-3xl mt-[10%] mx-auto text-center text-white font-semibold max-w-sm">Explore the World's
                 leading Online Library</h2>
-            <h2 class="text-xl mt-4 mx-auto text-center text-white font-semibold max-w-3xl">Millions of designers and
-                agencies around the world showcase their portfolio work on Dribbble - the home to the world’s best
-                design and creative professionals.</h2>
         </div>
-        <div class="absolute -bottom-20 z-20 max-w-5xl flex -m-4 text-center w-full mt-32">
-            {% for i in "1234" %}
+        <div class="absolute -bottom-20 z-20 max-w-4xl flex -m-4 text-center w-full mt-32">
+            {% for i in "1" %}
             <div class="p-4 w-full text-white">
                 <div
                     class="border-2 border-gray-200 bg-white text-blue-800 px-2 md:px-4 py-3 md:py-6 rounded-lg hover:scale-105 duration-200">
@@ -63,16 +60,20 @@
                             type="text" placeholder="Search">
                     </div>
 
-                    {% for i in "Ayush" %}
+                    {% for i in Category %}
                     <div id="scrollcontrol-{{i}}" class="relative">
-                        <h1 class="text-white mx-3 my-2 font-semibold text-2xl">Category</h1>
+                        <h1 class="text-white mx-3 my-2 font-semibold text-2xl">{{i}}</h1>
                         <div class="cards scrollbar flex w-full h-72 snap-x snap-mandatory rounded bg-black-image1 shadow-inner drop-shadow-2xl border-gray-300 overflow-y-hidden scroll-smooth">
                             <!-- Place your content here -->
                             {% for j in Books %}
-                            <a href="/book" class="shadow-inner snap-start shrink-0 first:pl-8 last:pr-8 m-2 mx-4">
+                             {% if j.Category == i %}
+                             
+                            <a href="/book/{{j.id}}" class="shadow-inner snap-start shrink-0 first:pl-8 last:pr-8 m-2 mx-4">
                                 <img class="shrink-0 h-[80%] mt-8 hover:scale-105 active:scale-100 duration-300"
                                     src="/media/{{j.image}}">
                             </a>
+                             {% else %}
+                             {% endif %}
                             {% endfor %}
                         </div>
                         <button

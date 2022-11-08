@@ -6,7 +6,7 @@
     <div class="w-full flex flex-col sm:flex-row mx-auto">
         <div class="w-full sm:w-1/2 lg:w-1/3 flex flex-col items-center justify-center m-1">
             <div class="h-96 w-fit border p-2 m-4">
-                <img src="../static/Media/book4.jpg" alt="..." class="h-full">
+                <img src="/media/{{book.image}}" alt="..." class="h-full">
             </div>
             <div class="flex m-1">
                 <div class="flex flex-col items-center justify-center">
@@ -33,15 +33,12 @@
             </div>
         </div>
         <div class="max-w-full sm:w-1/2 lg:w-2/3 mx-4 sm:mx-1 my-1">
-            <h1 class="my-4 text-2xl font-semibold">Book Name</h1>
-            <div class="text-justify mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, a nostrum?
-                Dicta neque laudantium voluptatum, aspernatur incidunt commodi mollitia? Ratione quod alias ad
-                blanditiis vel quam quo, minus autem officiis repudiandae deleniti dolorem ea qui voluptatibus porro a
-                sit? Vel distinctio recusandae possimus incidunt laboriosam? Consequatur minus officia facilis officiis.
+            <h1 class="my-4 text-2xl font-semibold">{{book.Title}}</h1>
+            <div class="text-justify mb-4">{{book.Description}}
             </div>
             <div class="mb-4">
                 <h2 class="text-lg font-medium">Author</h2>
-                <h4>Ayush Sharma</h4>
+                <h4>{{book.Author}}</h4>
             </div>
             <div class="mb-4">
                 <h2 class="text-lg font-medium">Pages</h2>
@@ -64,11 +61,12 @@
             <h2 class="text-4xl font-bold tracking-wide underline underline-offset-8">Related Books</h2>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center">
-            {% for j in "AyushSharma" %}
-            <a href="/book" class="m-2 p-2 border-2 shadow-xl shadow-gray-300">
-                <img class="h-[80%] hover:scale-105 active:scale-100 duration-300"
-                    src="static\CSS\Home.css">
+            {% for j in Category %}
+            {% if j.id != book.id %}
+            <a href="/book/{{j.id}}" class="m-2 p-2 border-2 shadow-xl shadow-gray-300">
+                <img class="h-[80%] hover:scale-105 active:scale-100 duration-300" src="/media/{{j.image}}">
             </a>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

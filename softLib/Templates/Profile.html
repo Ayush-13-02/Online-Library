@@ -1,9 +1,9 @@
 <!-- component -->
 {%extends 'Router.html'%}
-{%block title%}Online Library{%endblock%}
+{%block title%}{{user.first_name}} Profile{%endblock%}
 {%block body%}
-<div x-data="setup()" x-init="$refs.loading.classList.add('hidden');" class="mt-0 bg-gray-50">
-    <div class="flex h-screen container mx-auto antialiased text-gray-900 bg-gray-50 dark:bg-dark dark:text-light">
+<div x-data="setup()" x-init="$refs.loading.classList.add('hidden');" class="mt-0">
+    <div class="flex h-screen container mx-auto antialiased text-gray-900">
         <!-- Loading screen -->
         <div x-ref="loading"
             class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-blue-600">
@@ -24,7 +24,7 @@
             </svg>
             <!-- Sidebar content -->
             <div class="z-10 flex flex-col flex-1">
-                <div class="flex items-center justify-between flex-shrink-0 w-64 p-4">
+                <div class="flex items-center justify-between flex-shrink-0 w-72 p-4">
                     <!-- Logo -->
                     <div class="relative flex flex-col flex-auto min-w-0 p-4 overflow-hidden break-words border-0 shadow-blur rounded-2xl bg-white/80 bg-clip-border mb-4 draggable"
                         draggable="true">
@@ -38,8 +38,8 @@
                             </div>
                             <div class="flex-none w-auto max-w-full px-3 my-auto">
                                 <div class="h-full">
-                                    <h5 class="mb-1">Alec Thompson</h5>
-                                    <p class="mb-0 font-semibold leading-normal text-size-sm">CEO / Co-Founder</p>
+                                    <h5 class="mb-1">{{user.first_name}} {{user.last_name}}</h5>
+                                    <p class="mb-0 font-medium leading-normal text-sm">{{user.email}}</p>
                                 </div>
                             </div>
                             <div
@@ -73,13 +73,13 @@
                     </a>
                     {%endif%}
                     {% if upload %}
-                        <a href="/Uupload"
+                        <a href="/upload"
                             class="flex items-center space-x-2 my-1 px-2 py-2 shadow-lg max-w-full active:translate-y-[1px]">
                             <i class="fa-solid fa-upload"></i>
                             <span>Uploads</span>
                         </a>
                     {%else%}
-                        <a href="/Uupload"
+                        <a href="/upload"
                             class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
                             <i class="fa-solid fa-upload"></i>
                             <span>Uploads</span>
