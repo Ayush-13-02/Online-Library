@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECURITY_KEY']
-# SECRET_KEY = 'django-insecure-c!$=r=@2uaoni3)x2zy8%vq+klf7s1xf-sqx2wi$r6@qp5sqcv'
+# SECRET_KEY = os.environ['SECURITY_KEY']
+SECRET_KEY = 'django-insecure-c!$=r=@2uaoni3)x2zy8%vq+klf7s1xf-sqx2wi$r6@qp5sqcv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["softbooklib.herokuapp.com","localhost","*"]
+ALLOWED_HOSTS = ['.vercel.app',"localhost"]
 
 
 # Application definition
@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://softbooklib.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
