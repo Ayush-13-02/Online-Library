@@ -1,0 +1,53 @@
+{% extends 'Book.html' %}
+{% block comment %}
+<section class="py-1 lg:py-2 max-h-[20rem] overflow-y-scroll scrollbar1">
+    {% for j in Comment  %}
+    <div class="max-w-2xl mx-auto px-4">
+        <article class="p-6 mb-6 text-base rounded-lg border-b">
+            <footer class="flex justify-between items-center mb-2">
+                <div class="flex items-center">
+                    <p class="inline-flex items-center mr-3 text-sm">
+                        <img class="mr-2 w-6 h-6 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough">
+                        {{j.Commentby.first_name}} {{j.Commentby.last_name}}
+                    </p>
+                    <p class="text-sm">
+                        <time pubdate datetime={{j.Date}} title="February 8th, 2022">{{j.Date}}</time>
+                    </p>
+                </div>
+                {% if j.Commentby == request.user %}
+                <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                    class="inline-flex items-center p-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-50"
+                    type="button">
+                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                        </path>
+                    </svg>
+                    <span class="sr-only">Comment settings</span>
+                </button>
+                {% endif %}
+                <!-- Dropdown menu -->
+                
+                <div id="dropdownComment1"
+                    class="hidden z-10 w-36 bg-blue-100 rounded divide-y divide-gray-100 shadow">
+                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdownMenuIconHorizontalButton">
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-4 hover:bg-gray-100">Edit</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-4 hover:bg-gray-100">Remove</a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+            <p class="font-sans">{{j.Comments}}</p>
+        </article>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

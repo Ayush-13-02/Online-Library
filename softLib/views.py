@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from softLib.models import Book
+from softLib.models import Book,Comment
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 #HomePage
 def Home(request):
@@ -20,12 +20,13 @@ def Bookone(request,rid):
     if request.method == 'GET':
         book = Book.objects.filter(id=rid)
         catbooks = Book.objects.filter(Category = book[0].Category)
+        comment = Comment.objects.filter(Book_id = book[0])
         data = {
             'Category':catbooks,
-            'book': book[0]
+            'book': book[0],
+            'Comment':comment
         }
-        print(book)
-        return render(request,'Book.html',data)
+        return render(request,'Comment.html',data)
 def Profile(request):
     params = {
         'edit':True,
@@ -34,7 +35,21 @@ def Profile(request):
     }
 
     return render(request,'EProfile.html',params)
- 
+
+def Comments(request,id):
+    if request.method =='POST':
+        Bookid = Book.objects.filter(id=id)
+        Commentby = request.user
+        Comments = request.POST.get('Comments')
+        comment = Comment(Book_id=Bookid[0],Commentby=Commentby,Comments=Comments)
+        comment.save()
+        book = Book.objects.get(id=id)
+        book.Review = book.Review+1
+        book.save()
+        print(book.Review)
+        Url = '/book/'+str(id)
+        return redirect(Url)
+
 def Userupload(request):
     if request.method == 'POST':
         Title = request.POST.get('Title')
@@ -45,7 +60,6 @@ def Userupload(request):
         desc = request.POST.get('desc')
         addby = request.user
         book = Book(Title=Title,Author=Author,Category=Category,Addby=addby,Description=desc,image=Cover,pdf=pdf)
-        print("Cover- ",Cover)
         book.save()
         return redirect('/upload')
 

@@ -9,5 +9,6 @@ urlpatterns = [
     path('upload',views.Userupload, name="Userupload"),
     path('login',views.Login, name="Login"),
     path('logout',views.Logout, name="Logout"),
-    path('register',views.Register, name="Register")
+    path('register',views.Register, name="Register"),
+    path('comment/<int:id>',views.Comments, name="comment")
 ]
