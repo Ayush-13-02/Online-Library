@@ -5,7 +5,7 @@
     <!-- Book detail -->
     <div class="w-full flex flex-col sm:flex-row mx-auto">
         <div class="w-full sm:w-1/2 lg:w-1/3 flex flex-col items-center justify-start m-1">
-            <div class="top-0 h-96 w-fit border p-2 mx-4 mt-4 lg:mt-16">
+            <div class="top-0 h-96 w-fit border-4 border-tri p-2 mx-4 mt-4 lg:mt-16">
                 <img src="/media/{{book.image}}" alt="..." class="h-full">
             </div>
             <div class="flex m-1">
@@ -42,11 +42,15 @@
             </div>
             <div class="mb-4">
                 <h2 class="text-lg font-medium">Pages</h2>
-                <h4>300</h4>
+                <h4>{{Page}}</h4>
             </div>
             <div class="mb-4">
                 <h2 class="text-lg font-medium">Size</h2>
-                <h4>3.4MB</h4>
+                {% if Kb %}
+                    <h4>{{size}} KB</h4>
+                {% else %}
+                    <h4>{{size}} MB</h4>
+                {% endif %}
             </div>
             <div class="mb-4">
                 <h2 class="text-lg font-medium text-blue-500 cursor-pointer hover:underline">Reviews</h2>
@@ -61,17 +65,19 @@
                         <form action="/comment/{{book.id}}" method="post" class="w-full p-4">
                             {% csrf_token %}
                             <div>
-                                <div class="mb-2">
+                                <div class="mb-2 flex flex-col">
                                     <label for="Comments" class="text-lg text-gray-300 mb-2">Add a comment</label>
-                                    <textarea
-                                        class="w-full text-black h-44 p-2 border rounded focus:outline-none focus:ring-blue-700 focus:ring-1"
-                                        name="Comments" placeholder="">
-                                    </textarea>
+                                    <!-- <textarea
+                                        class="w-full text-black h-44 p-2 border rounded"
+                                        value="" name="Comments" placeholder="Characters should be more than 4">
+                                    </textarea> -->
+                                    <textarea class="w-full p-2 text-black rounded border h-44" placeholder="Comment should have minimum 4 Characters"
+                                     name="Comments"></textarea>
                                 </div>
                                 <button type="submit" class="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded">
                                     Comment
                                 </button>
-                                <button class="px-3 py-2 text-sm text-blue-300 border border-blue-500 rounded">
+                                <button type="reset" class="px-3 py-2 text-sm text-blue-300 border border-blue-500 rounded">
                                     Cancel
                                 </button>
                             </div>

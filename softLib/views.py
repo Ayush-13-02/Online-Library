@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from softLib.models import Book,Comment
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
+import os
+from django.conf import settings
+import PyPDF2
 #HomePage
 def Home(request):
     if request.method == 'GET':
@@ -21,11 +24,25 @@ def Bookone(request,rid):
         book = Book.objects.filter(id=rid)
         catbooks = Book.objects.filter(Category = book[0].Category)
         comment = Comment.objects.filter(Book_id = book[0])
+        Path = str(settings.BASE_DIR)+'/media/'+str(book[0].pdf)
+        filesize = os.path.getsize(Path)
+        kb = True
+        if(filesize >= pow(1024,2)):
+            filesize = round(filesize/pow(1024,2),2)
+            kb = False
+        
+        file = open(Path,'rb')
+        pdfreader = PyPDF2.PdfFileReader(file)
+        totalpage = pdfreader.numPages
         data = {
             'Category':catbooks,
             'book': book[0],
+            'size':filesize,
+            'Kb':kb,
+            'Page': totalpage,
             'Comment':comment
         }
+        
         return render(request,'Comment.html',data)
 def Profile(request):
     params = {
@@ -41,12 +58,13 @@ def Comments(request,id):
         Bookid = Book.objects.filter(id=id)
         Commentby = request.user
         Comments = request.POST.get('Comments')
-        comment = Comment(Book_id=Bookid[0],Commentby=Commentby,Comments=Comments)
-        comment.save()
-        book = Book.objects.get(id=id)
-        book.Review = book.Review+1
-        book.save()
-        print(book.Review)
+        print(len(Comments))
+        if len(Comments)>=4:
+            comment = Comment(Book_id=Bookid[0],Commentby=Commentby,Comments=Comments)
+            comment.save()
+            book = Book.objects.get(id=id)
+            book.Review = book.Review+1
+            book.save()
         Url = '/book/'+str(id)
         return redirect(Url)
 

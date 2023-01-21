@@ -27,8 +27,8 @@
     background-color: aqua;
 }
 
-.textclr{
-    background: linear-gradient(rgba(221, 125, 23, 1),#fff, rgb(145, 229, 99));
+.border-tri{
+    border-color: linear-gradient(rgba(221, 125, 23, 1),#fff, rgb(145, 229, 99));
 }
 
 .bg-black-image {
