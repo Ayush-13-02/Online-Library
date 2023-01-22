@@ -58,7 +58,6 @@ def Comments(request,id):
         Bookid = Book.objects.filter(id=id)
         Commentby = request.user
         Comments = request.POST.get('Comments')
-        print(len(Comments))
         if len(Comments)>=4:
             comment = Comment(Book_id=Bookid[0],Commentby=Commentby,Comments=Comments)
             comment.save()
@@ -68,6 +67,16 @@ def Comments(request,id):
         Url = '/book/'+str(id)
         return redirect(Url)
 
+def DeleteComment(request,id):
+    CommentId = Comment.objects.filter(id=id)
+    ID = CommentId[0].Book_id.id
+    Url = '/book/'+str(ID)
+    book = Book.objects.get(id=ID);
+    book.Review  = book.Review-1
+    book.save()
+    CommentId.delete()
+    # Comment.save()
+    return redirect(Url)
 def Userupload(request):
     if request.method == 'POST':
         Title = request.POST.get('Title')
@@ -96,7 +105,6 @@ def Login(request):
     if request.method == 'POST':
         loginusernameame = request.POST['email']
         loginpassword = request.POST['pass']
-        print(loginusernameame,loginpassword)
         user = authenticate(username = loginusernameame, password = loginpassword)  
         if user is not None:
             login(request,user)
