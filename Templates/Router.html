@@ -10,29 +10,46 @@
   <title>{%block title%}{%endblock%}</title>
   {% tailwind_css %}
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/static/CSS/lib.js"></script>
   <link rel="stylesheet" href="../static/CSS/Home.css">
   <script src="https://kit.fontawesome.com/5162bc258a.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-gray-800 text-blue-100" style="font-family:cursive">
+<body class="bg-gray-800 text-blue-100 scrollbar" style="font-family:cursive">
 
   <nav class="fixed top-0 w-full z-50 px-2 sm:px-4 py-1.5 bg-transparent clearNav">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <a href="/" class="flex items-center text-orange-500">
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90.953 90.953"
-                        style="enable-background:new 0 0 90.953 90.953;"class="text-white w-6 md:w-10 h-6 md:h-9 mr-3 inline-block" xml:space="preserve">
-                        <g><path style="fill:#53b6eb;" d="M20.389,0.004l-10.157,9.48v81.469h60.332v-2.441l7.934-7.047h2.222V0L20.389,0.004L20.389,0.004z
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px" y="0px" viewBox="0 0 90.953 90.953" style="enable-background:new 0 0 90.953 90.953;"
+          class="text-white w-6 md:w-10 h-6 md:h-9 mr-3 inline-block" xml:space="preserve">
+          <g>
+            <path style="fill:#53b6eb;" d="M20.389,0.004l-10.157,9.48v81.469h60.332v-2.441l7.934-7.047h2.222V0L20.389,0.004L20.389,0.004z
 		 M70.564,86.605v-5.132v-1.432V9.488H21.82h-1.432h-5.315l0.365-0.358l0.365-0.358l3.869-3.794l0.358-0.354l0.358-0.351
 		l1.031-1.009l0.401,0.011V2.87l0.036-0.036h56.181v77.131l-0.082,0.075l-1.61,1.432L70.564,86.605z" />
-                        </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                    </svg>
+          </g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+        </svg>
         <span class="self-center text-xl font-semibold whitespace-nowrap ">EBook Library</span>
       </a>
       <div class="flex items-center md:order-2 relative group">
         {% if user.is_authenticated %}
-        <a href="/profile" class="mr-3 text-base bg-[#ff871c] rounded-full md:mr-0" id="user-menu-button" aria-expanded="false"
-          data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+        <a href="/profile" class="mr-3 text-base bg-[#ff871c] rounded-full md:mr-0" id="user-menu-button"
+          aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
           <span class="sr-only">Open user menu</span>
           <img class="w-11 h-11 rounded-full" src="../static/Media/bg1.jpg" alt="user photo">
         </a>
@@ -54,31 +71,34 @@
           </svg>
         </button>
       </div>
-      <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
+      <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2"
+        style="font-family: system-ui;">
         <ul
-          class="flex flex-col p-4 mt-4 rounded-lg border md:bg-slate-200 border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium md:border-0 text-white md:text-black dark:border-gray-700">
+          class="flex flex-col p-4 mt-4 rounded-lg border md:bg-slate-200 border-gray-100 md:flex-row md:space-x-8 md:mt-0 text-black">
           <li>
-            <a href="/"
-              class="block py-2 pr-4 pl-3 rounded bg-transparent underline md:underline-offset-2 md:p-0"
+            <a href="/" class="font-medium block py-2 pr-4 pl-3 rounded md:hover:text-[#674318] md:p-0"
               aria-current="page">Home</a>
           </li>
           <li>
-            <a href="/other"
-              class="block py-2 pr-4 pl-3 rounded bg-transparent hover:underline md:underline-offset-2 md:p-0 delay-300">About</a>
+            <a href="/other" class="font-medium block py-2 pr-4 pl-3 rounded md:hover:text-[#674318] md:p-0">About</a>
           </li>
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 rounded bg-transparent md:hover:text-[#674318] md:p-0">Services</a>
+            <a href="#" class="font-medium block py-2 pr-4 pl-3 rounded md:hover:text-[#674318] md:p-0">Services</a>
           </li>
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 rounded bg-transparent md:hover:text-[#674318] md:p-0">Contact</a>
+            <a href="#" class="font-medium block py-2 pr-4 pl-3 rounded md:hover:text-[#674318] md:p-0">Contact</a>
           </li>
         </ul>
       </div>
     </div>
+    
   </nav>
-
+  {% if Message %}
+    <div class="flex justify-between fixed top-[4.5rem] text-xl bg-green-700 py-3 px-4 z-[100] w-full">
+      {{Message}}
+      <button onclick="location.href='/closemessage'"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    {% endif %}
   {%block body%}{%endblock%}
   <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 </body>

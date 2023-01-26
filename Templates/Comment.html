@@ -1,14 +1,16 @@
 {% extends 'Book.html' %}
 {% block comment %}
-<section class="py-1 lg:py-2 max-h-[20rem] overflow-y-scroll scrollbar1">
-    {% for j in Comment  %}
-    <div class="max-w-2xl mx-auto px-4">
-        <article class="p-6 mb-6 text-base rounded-lg border-b hover:scale-[1.01] duration-150">
+<section class="py-1 lg:py-2 bg-gray-900 w-full">
+    {% for j in Comment %}
+    <div class="mx-auto px-4 shadow-inner">
+        <article
+            class="p-6 mb-6 text-base rounded-lg border border-gray-800 hover:scale-[1.01] duration-150 shadow-inner">
             <footer class="flex justify-between items-center mb-2">
                 <div class="flex items-center">
                     <p class="inline-flex items-center mr-3 text-sm">
                         <img class="mr-2 w-6 h-6 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough">
+                            src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                            alt="Michael Gough">
                         {{j.Commentby.first_name}} {{j.Commentby.last_name}}
                     </p>
                     <p class="text-sm">
@@ -16,13 +18,13 @@
                     </p>
                 </div>
                 {% if j.Commentby == request.user %}
-                    <form action="/delcomment/{{j.id}}">
-                        <button class="active:translate-y-[1px]" type="submit">
-                            <i class="fa-sm fa-solid fa-trash-can"></i>
-                        </button>
-                    </form>
+                <form action="/delcomment/{{j.id}}">
+                    <button class="active:translate-y-[1px]" type="submit">
+                        <i class="fa-sm fa-solid fa-trash-can"></i>
+                    </button>
+                </form>
                 {% endif %}
-                
+
             </footer>
             <p class="pl-4">{{j.Comments}}</p>
         </article>

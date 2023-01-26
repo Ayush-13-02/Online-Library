@@ -9,6 +9,7 @@ import os
 from django.conf import settings
 import PyPDF2
 #HomePage
+Message=""
 def Home(request):
     if request.method == 'GET':
         Bookdata = Book.objects.all()
@@ -16,9 +17,16 @@ def Home(request):
         catbook = {item['Category'] for item in catbooks}
         data = {
             'Category':catbook,
-            'Books': Bookdata
+            'Books': Bookdata,
+            'Message':Message
         }
         return render(request,'Books.html',data)
+
+def CloseMessage(request):
+    global Message
+    Message=""
+    return redirect('/')
+
 def Bookone(request,rid):
     if request.method == 'GET':
         book = Book.objects.filter(id=rid)
@@ -39,11 +47,13 @@ def Bookone(request,rid):
             'book': book[0],
             'size':filesize,
             'Kb':kb,
+            'Message':Message,
             'Page': totalpage,
             'Comment':comment
         }
         
         return render(request,'Comment.html',data)
+
 def Profile(request):
     params = {
         'edit':True,
@@ -52,6 +62,15 @@ def Profile(request):
     }
 
     return render(request,'EProfile.html',params)
+
+def Downloadbook(request,id):
+    global Message
+    book = Book.objects.get(id=id)
+    book.Downloads = book.Downloads+1
+    book.save()
+    Url = '/book/'+str(id)
+    Message = "Download Successfully"
+    return redirect(Url)
 
 def Comments(request,id):
     if request.method =='POST':
@@ -68,6 +87,7 @@ def Comments(request,id):
         return redirect(Url)
 
 def DeleteComment(request,id):
+    global Message
     CommentId = Comment.objects.filter(id=id)
     ID = CommentId[0].Book_id.id
     Url = '/book/'+str(ID)
@@ -75,9 +95,12 @@ def DeleteComment(request,id):
     book.Review  = book.Review-1
     book.save()
     CommentId.delete()
+    Message = "Comment deleted Successfully"
     # Comment.save()
     return redirect(Url)
+
 def Userupload(request):
+    global Message
     if request.method == 'POST':
         Title = request.POST.get('Title')
         Category = request.POST.get('Category')
@@ -88,6 +111,7 @@ def Userupload(request):
         addby = request.user
         book = Book(Title=Title,Author=Author,Category=Category,Addby=addby,Description=desc,image=Cover,pdf=pdf)
         book.save()
+        Message = "Book upload Successfully"
         return redirect('/upload')
 
     if request.method == 'GET':
@@ -96,27 +120,31 @@ def Userupload(request):
             'myupload':myupload,
             'edit':False,
             'upload':True,
-            'save':False
+            'save':False,
+            'Message':Message
         }
         return render(request,'userupload.html',params)
+
 @csrf_protect
 @ensure_csrf_cookie
 def Login(request):
+    global Message
     if request.method == 'POST':
         loginusernameame = request.POST['email']
         loginpassword = request.POST['pass']
         user = authenticate(username = loginusernameame, password = loginpassword)  
         if user is not None:
             login(request,user)
-            # messages.success(request,"Successfully logged In")
+            Message = "Successfully logged In"
             return redirect('/')
         else:
-            # messages.error("Email or Password is wrong")
+            Message = "Email or Password is wrong"
             return redirect('/login')
     elif request.method == 'GET':
         return render(request,'Login.html')
 
 def Register(request):
+    global Message
     if request.method == 'POST':
         fname = request.POST['fname']
         lname = request.POST['lname']
@@ -130,15 +158,17 @@ def Register(request):
             myuser.first_name = fname
             myuser.last_name = lname
             myuser.save()
-            messages.success(request, "Register in EBook Library Successfully")
+            Message = "Register in EBook Library Successfully"
             return redirect('/')
         else:
-            HttpResponse(request,"Passward doesn't match")
+            Message = "Register in EBook Library Successfully"
             return redirect('/register')
     elif request.method == 'GET':
         return render(request,'Register.html')
 
 def Logout(request):
+    global Message
     logout(request)
+    Message = "Logged out Successfully"
     messages.success(request, "Logged out Successfully")
     return redirect('/')
