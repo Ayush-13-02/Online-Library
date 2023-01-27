@@ -3,7 +3,7 @@
 {%block title%}{{user.first_name}} {{user.last_name}} {%endblock%}
 {%block body%}
 <div x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
-    <div class="flex h-screen container mx-auto antialiased text-gray-300">
+    <div class="container relative flex h-screen mx-auto antialiased text-gray-300">
         <!-- Loading screen -->
         <div x-ref="loading"
             class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-blue-600">
@@ -18,13 +18,13 @@
             class="fixed inset-y-0 z-10 lg:left-2 flex w-80 top-16">
             <!-- Curvy shape -->
             <svg class="absolute inset-0 w-full h-full text-white" style="filter: drop-shadow(10px 0 10px #00000030)"
-                preserveAspectRatio="none" viewBox="0 0 309 800" fill="rgb(107 114 128)"
+                preserveAspectRatio="none" viewBox="0 0 309 800" fill="rgb(17 24 39)"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M268.487 0H0V800H247.32C207.957 725 207.975 492.294 268.487 367.647C329 243 314.906 53.4314 268.487 0Z" />
             </svg>
             <!-- Sidebar content -->
-            <div class="z-10 flex flex-col flex-1">
+            <div class="z-[9999] flex flex-col flex-1">
                 <div class="flex items-center justify-between flex-shrink-0 w-72 p-4">
                     <!-- Logo -->
                     <div class="relative flex flex-col flex-auto min-w-fit p-3 overflow-hidden break-words border-0 shadow-blur rounded-2xl bg-white/80 text-gray-900 bg-clip-border mb-4 draggable"
@@ -62,32 +62,32 @@
                 <nav class="flex flex-col flex-1 w-64 p-4 mt-4">
                     {% if edit %}
                     <a href="/profile"
-                        class="flex items-center space-x-2 my-1 px-2 py-2 shadow-lg max-w-full active:translate-y-[1px]">
+                        class="flex items-center space-x-2 my-1 px-2 py-2 shadow shadow-blue-600 max-w-full active:translate-y-[1px]">
                         <i class="fa-solid fa-user-pen"></i>
                         <span>Edit Pofile</span>
                     </a>
                     {% else %}
                     <a href="/profile"
-                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
+                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow shadow-blue-600 max-w-full active:translate-y-[1px]">
                         <i class="fa-solid fa-user-pen"></i>
                         <span>Edit Pofile</span>
                     </a>
                     {%endif%}
                     {% if upload %}
                     <a href="/upload"
-                        class="flex items-center space-x-2 my-1 px-2 py-2 shadow-lg max-w-full active:translate-y-[1px]">
+                        class="flex items-center space-x-2 my-1 px-2 py-2 shadow shadow-blue-600 max-w-full active:translate-y-[1px]">
                         <i class="fa-solid fa-upload"></i>
                         <span>Uploads</span>
                     </a>
                     {%else%}
                     <a href="/upload"
-                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
+                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow shadow-blue-600/60 max-w-full active:translate-y-[1px]">
                         <i class="fa-solid fa-upload"></i>
                         <span>Uploads</span>
                     </a>
                     {%endif%}
                     <a href="#"
-                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow-lg max-w-full active:translate-y-[1px]">
+                        class="flex items-center space-x-2 my-1 px-2 py-2 hover:shadow shadow-blue-600 max-w-full active:translate-y-[1px]">
                         <i class="fa-solid fa-bookmark"></i>
                         <span>Save Books</span>
                     </a>

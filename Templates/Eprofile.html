@@ -3,77 +3,103 @@
 <!-- component -->
 <!-- This is an example component -->
 
-<div class="block place-items-center max-h-full w-full md:w-[calc(100%-20rem)] mt-24 lg:mt-0 ml-auto mr-0">
+<div class="block place-items-center max-h-full w-full md:w-[calc(100%-20rem)] my-20 ml-auto mr-0">
 
-    <div class="border-b-2 block lg:flex m-4">
-
-        <div class="w-full lg:w-2/5 p-4 sm:p-6 lg:p-8 bg-white shadow-md">
-            <div class="flex justify-between">
-                <span class="text-xl font-semibold block">My Profile</span>
-            </div>
-
-            <span class="text-gray-600">This information is secret so be careful</span>
-            <div x-data="{photoName: null, photoPreview: null}">
-                <!-- Photo File Input -->
-                <input type="file" class="hidden" x-ref="photo" x-on:change="
-                                    photoName = $refs.photo.files[0].name;
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        photoPreview = e.target.result;
-                                    };
-                                    reader.readAsDataURL($refs.photo.files[0]);
-                ">
-                <div class="text-center">
-                    <!-- Current Profile Photo -->
-                    <div class="w-full p-8 mx-2 flex justify-center" x-show="! photoPreview">
-                        <img id="showImage" class="max-w-xs w-32 items-center border rounded-lg"
-                            src="https://cdn.pixabay.com/photo/2014/04/02/10/54/person-304893__340.png"
-                            alt="">
-
+    <div class="container mx-auto sm:p-4 my-16 text-gray-50">
+        <div class="flex items-center space-x-2 my-1 px-2 py-2 shadow shadow-blue-600 max-w-full bg-gray-800 border-t rounded">
+            <div class="flex-auto p-6">
+                <div class="e-profile">
+                    <div class="flex flex-row flex-wrap ">
+                        <div class="max-w-full col-sm-auto mb-3">
+                            <div class="mx-auto" style="width: 140px;">
+                                <div class="flex justify-center items-center rounded"
+                                    style="height: 140px; background-color: rgb(233, 236, 239);">
+                                    <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="relative flex-grow max-w-full flex-1 px-4 flex flex-col sm:flex-row justify-between mb-3">
+                            <div class="text-center sm:text-left mb-2 sm:mb-0">
+                                <h4 class="sm:pt-2 pb-1 text-xl font-bold mb-0 whitespace-no-wrap">John Smith</h4>
+                                <p class="mb-0">@johnny.s</p>
+                                <div class="text-gray-200"><small>Last seen 2 hours ago</small></div>
+                                <div class="mt-2">
+                                    <button
+                                        class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-2 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600"
+                                        type="button">
+                                        <i class="fa fa-fw fa-camera"></i>
+                                        <span>Change Photo</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-center sm:text-right">
+                                <span
+                                    class="inline-block p-1 text-center font-semibold text-sm align-baseline leading-none rounded bg-gray-600 text-white hover:bg-gray-700">administrator</span>
+                                <div class="text-gray-200"><small>Joined 09 Dec 2017</small></div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="flex items-center justify-center ">
-                        <button type="button"
-                            class="hover:shadow-lg hover:-translate-y-1 hover:shadow-yellow-500/50 bg-transparent mx-2 my-2 text-lg font-medium border hover:border-gray-900 border-gray-400 duration-500 py-2 px-3 rounded active:translate-y-[1px]"
-                            x-on:click.prevent="$refs.photo.click()">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            Change
-                        </button>
-                        <button
-                            class="hover:shadow-lg hover:-translate-y-1 hover:shadow-yellow-500/50 bg-transparent mx-2 my-2 text-lg font-medium border hover:border-gray-900 border-gray-400 duration-500 py-2 px-3 rounded active:translate-y-[1px]">
-                             <i class="fa-solid fa-trash"></i> 
-                              Delete
-                        </button>
+                    
+                    <div class="tab-content pt-3 border-t border-blue-300 rounded mt-4">
+                        <div class="tab-pane active">
+                            <form class="form" novalidate="">
+                                <div class="flex flex-wrap ">
+                                    <div class="relative flex-grow max-w-full flex-1 px-4">
+                                        <div class="flex flex-wrap ">
+                                            <div class="relative flex-grow max-w-full flex-1 px-4">
+                                                <div class="mb-4">
+                                                    <label>First Name</label>
+                                                    <input class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
+                                                        type="text" name="name" placeholder="John"
+                                                        value="John">
+                                                </div>
+                                            </div>
+                                            <div class="relative flex-grow max-w-full flex-1 px-4">
+                                                <div class="mb-4">
+                                                    <label>Last Name</label>
+                                                    <input
+                                                        class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
+                                                        type="text" name="username" placeholder="Smith"
+                                                        value="Smith">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap ">
+                                            <div class="relative flex-grow max-w-full flex-1 px-4">
+                                                <div class="mb-4">
+                                                    <label>Email/Username</label>
+                                                    <input
+                                                        class="block appearance-none w-full p-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
+                                                        type="text" placeholder="user@example.com">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap ">
+                                            <div class="relative flex-grow max-w-full flex-1 px-4 mb-3">
+                                                <div class="mb-4">
+                                                    <label>About</label>
+                                                    <textarea
+                                                        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
+                                                        rows="5" placeholder="My Bio"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap ">
+                                    <div class="relative flex-grow max-w-full flex-1 px-4 flex justify-end">
+                                        <button
+                                            class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600"
+                                            type="submit">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="w-full lg:w-3/5 p-8 bg-white lg:ml-4 shadow-md">
-            <div class="rounded  shadow p-6">
-                <div class="pb-6">
-                    <label for="name" class="font-semibold text-gray-700 block pb-1">First Name</label>
-                    <div class="flex">
-                        <input id="username" class="border-1  rounded-r px-4 py-2 w-full" type="text" value={{user.first_name}} />
-                    </div>
-                </div>
-                <div class="pb-4">
-                    <label for="name" class="font-semibold text-gray-700 block pb-1">Last Name</label>
-                    <div class="flex">
-                        <input id="username" class="border-1  rounded-r px-4 py-2 w-full" type="text"
-                            value={{user.last_name}} />
-                    </div>
-                </div>
-                <div class="pb-4">
-                    <label for="about" class="font-semibold text-gray-700 block pb-1">Email</label>
-                    <input id="email" class="border-1  rounded-r px-4 py-2 w-full" type="email"
-                        value={{user.email}} />
-                    <span class="text-gray-600 pt-4 block opacity-70">Personal login information of your account</span>
-                </div>
-            </div>
-        </div>
-
     </div>
-
 </div>
 {% endblock %}
