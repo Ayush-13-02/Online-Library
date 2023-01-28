@@ -21,9 +21,9 @@
                         <div
                             class="relative flex-grow max-w-full flex-1 px-4 flex flex-col sm:flex-row justify-between mb-3">
                             <div class="text-center sm:text-left mb-2 sm:mb-0">
-                                <h4 class="sm:pt-2 pb-1 text-xl font-bold mb-0 whitespace-no-wrap">John Smith</h4>
-                                <p class="mb-0">@johnny.s</p>
-                                <div class="text-gray-200"><small>Last seen 2 hours ago</small></div>
+                                <h4 class="sm:pt-2 pb-1 text-xl font-bold mb-0 whitespace-no-wrap">{{user.first_name}} {{user.last_name}}</h4>
+                                <p class="mb-0">{{user.email}}</p>
+                                <div class="text-gray-200"><small>Last login {{user.last_login}}</small></div>
                                 <div class="mt-2">
                                     <button
                                         class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-2 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600"
@@ -36,7 +36,7 @@
                             <div class="text-center sm:text-right">
                                 <span
                                     class="inline-block p-1 text-center font-semibold text-sm align-baseline leading-none rounded bg-gray-600 text-white hover:bg-gray-700">administrator</span>
-                                <div class="text-gray-200"><small>Joined 09 Dec 2017</small></div>
+                                <div class="text-gray-200"><small>Joined {{user.date_joined}}</small></div>
                             </div>
                         </div>
                     </div>
@@ -49,36 +49,36 @@
                                         <div class="flex flex-wrap ">
                                             <div class="relative flex-grow max-w-full flex-1 px-4">
                                                 <div class="mb-4">
-                                                    <label>First Name</label>
+                                                    <label>First Name*</label>
                                                     <input class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
                                                         type="text" name="name" placeholder="John"
-                                                        value="John">
+                                                        value={{user.first_name}}>
                                                 </div>
                                             </div>
                                             <div class="relative flex-grow max-w-full flex-1 px-4">
                                                 <div class="mb-4">
-                                                    <label>Last Name</label>
+                                                    <label>Last Name*</label>
                                                     <input
                                                         class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
                                                         type="text" name="username" placeholder="Smith"
-                                                        value="Smith">
+                                                        value={{user.last_name}}>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap ">
                                             <div class="relative flex-grow max-w-full flex-1 px-4">
                                                 <div class="mb-4">
-                                                    <label>Email/Username</label>
+                                                    <label>Email/Username*</label>
                                                     <input
                                                         class="block appearance-none w-full p-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        type="text" placeholder="user@example.com">
+                                                        type="text" value={{user.email}} placeholder="user@example.com">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap ">
                                             <div class="relative flex-grow max-w-full flex-1 px-4 mb-3">
                                                 <div class="mb-4">
-                                                    <label>About</label>
+                                                    <label>About (optional)</label>
                                                     <textarea
                                                         class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
                                                         rows="5" placeholder="My Bio"></textarea>

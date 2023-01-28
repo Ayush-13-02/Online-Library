@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from softLib.models import Book,Comment
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 import os
 from django.conf import settings
 import PyPDF2
 #HomePage
 Message=""
+Booksearch = Book.objects.none()
+Query=""
 def Home(request):
     if request.method == 'GET':
         Bookdata = Book.objects.all()
@@ -18,10 +21,30 @@ def Home(request):
         data = {
             'Category':catbook,
             'Books': Bookdata,
-            'Message':Message
+            'Message':Message,
+            'Search':Booksearch,
+            'query':Query
         }
         return render(request,'Books.html',data)
 
+def Search(request):
+    query = request.GET.get('searchbook')
+    if len(query)<20 and len(query)>2:
+        bookT = Book.objects.filter(Title__icontains=query)
+        bookD = Book.objects.filter(Description__icontains=query)
+        bookA = Book.objects.filter(Author__icontains=query)
+        bookC = Book.objects.filter(Category__icontains=query)
+        bookT =  bookT.union(bookD,bookA)
+        bookT = bookT.union(bookC)
+        global Booksearch
+        Booksearch = bookT
+    if not Booksearch:
+        Booksearch = Book.objects.filter(Category__icontains='Not Found')
+        Booksearch = Booksearch[0]
+        print('Book:-',Booksearch)
+    global Query
+    Query = query
+    return redirect('/#search')
 def CloseMessage(request):
     global Message
     Message=""
@@ -54,6 +77,7 @@ def Bookone(request,rid):
         
         return render(request,'Comment.html',data)
 
+@login_required
 def Profile(request):
     params = {
         'edit':True,
@@ -71,7 +95,7 @@ def Downloadbook(request,id):
     Url = '/book/'+str(id)
     Message = "Download Successfully"
     return redirect(Url)
-
+@login_required
 def Comments(request,id):
     if request.method =='POST':
         Bookid = Book.objects.filter(id=id)
@@ -85,7 +109,7 @@ def Comments(request,id):
             book.save()
         Url = '/book/'+str(id)
         return redirect(Url)
-
+@login_required
 def DeleteComment(request,id):
     global Message
     CommentId = Comment.objects.filter(id=id)
@@ -98,7 +122,7 @@ def DeleteComment(request,id):
     Message = "Comment deleted Successfully"
     # Comment.save()
     return redirect(Url)
-
+@login_required
 def Userupload(request):
     global Message
     if request.method == 'POST':

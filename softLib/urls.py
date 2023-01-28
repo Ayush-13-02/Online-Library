@@ -10,6 +10,7 @@ urlpatterns = [
     path('login',views.Login, name="Login"),
     path('logout',views.Logout, name="Logout"),
     path('register',views.Register, name="Register"),
+    path('search',views.Search, name="search"),
     path('closemessage',views.CloseMessage, name="closemessage"),
     path('comment/<int:id>',views.Comments, name="comment"),
     path('delcomment/<int:id>',views.DeleteComment, name="delcomment"),
