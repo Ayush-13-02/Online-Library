@@ -6,52 +6,57 @@
 <div class="block place-items-center max-h-full w-full md:w-[calc(100%-20rem)] my-20 ml-auto mr-0">
 
     <div class="container mx-auto sm:p-4 my-16 text-gray-50">
-        <div class="flex items-center space-x-2 my-1 px-2 py-2 shadow shadow-blue-600 max-w-full bg-gray-800 border-t rounded">
+        <div
+            class="flex items-center space-x-2 my-1 px-2 py-2 shadow shadow-blue-600 max-w-full bg-gray-800 border-t rounded">
             <div class="flex-auto p-6">
-                <div class="e-profile">
-                    <div class="flex flex-row flex-wrap ">
-                        <div class="max-w-full col-sm-auto mb-3">
-                            <div class="mx-auto" style="width: 140px;">
-                                <div class="flex justify-center items-center rounded"
-                                    style="height: 140px; background-color: rgb(233, 236, 239);">
-                                    <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                <form action="/updateprofile" method="post">
+                    {% csrf_token %}
+                    <div class="e-profile">
+                        <div class="flex flex-row flex-wrap ">
+                            <div class="max-w-full col-sm-auto mb-3">
+                                <div id="profilephoto" class="w-32 h-32 xl:w-36 xl:h-36 flex-grow-0 flex-shrink-0">
+                                    <img id="defaultpic" src='/static/Media/unkowndp.jpg'
+                                        class="w-full h-full object-cover object-left-top rounded-full shadow-xl flex-grow-0 flex-shrink-0"
+                                        alt='...' />
+                                </div>
+                            </div>
+                            <div
+                                class="relative flex-grow max-w-full flex-1 px-4 flex flex-col sm:flex-row justify-between mb-3">
+                                <div class="text-center sm:text-left mb-2 sm:mb-0">
+                                    <h4 class="sm:pt-2 pb-1 text-xl font-bold mb-0 whitespace-no-wrap">
+                                        {{user.first_name}}
+                                        {{user.last_name}}</h4>
+                                    <p class="mb-0">{{user.email}}</p>
+                                    <div class="text-gray-200"><small>Last login {{user.last_login}}</small></div>
+                                    <div class="mt-2">
+                                        <label
+                                            class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-2 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600">
+                                            <i class="fa fa-fw fa-camera"></i>
+                                            <span>Change Photo</span>
+                                            <input onchange="Profilephoto(event)" type="file" name="profilephoto"
+                                                id="Userpic" class="opacity-0 w-0" />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="text-center sm:text-right">
+                                    <span
+                                        class="inline-block p-1 text-center font-semibold text-sm align-baseline leading-none rounded bg-gray-600 text-white hover:bg-gray-700">administrator</span>
+                                    <div class="text-gray-200"><small>Joined {{user.date_joined}}</small></div>
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="relative flex-grow max-w-full flex-1 px-4 flex flex-col sm:flex-row justify-between mb-3">
-                            <div class="text-center sm:text-left mb-2 sm:mb-0">
-                                <h4 class="sm:pt-2 pb-1 text-xl font-bold mb-0 whitespace-no-wrap">{{user.first_name}} {{user.last_name}}</h4>
-                                <p class="mb-0">{{user.email}}</p>
-                                <div class="text-gray-200"><small>Last login {{user.last_login}}</small></div>
-                                <div class="mt-2">
-                                    <button
-                                        class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-2 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600"
-                                        type="button">
-                                        <i class="fa fa-fw fa-camera"></i>
-                                        <span>Change Photo</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="text-center sm:text-right">
-                                <span
-                                    class="inline-block p-1 text-center font-semibold text-sm align-baseline leading-none rounded bg-gray-600 text-white hover:bg-gray-700">administrator</span>
-                                <div class="text-gray-200"><small>Joined {{user.date_joined}}</small></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content pt-3 border-t border-blue-300 rounded mt-4">
-                        <div class="tab-pane active">
-                            <form class="form" novalidate="">
+
+                        <div class="tab-content pt-3 border-t border-blue-300 rounded mt-4">
+                            <div class="tab-pane active">
                                 <div class="flex flex-wrap ">
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <div class="flex flex-wrap ">
                                             <div class="relative flex-grow max-w-full flex-1 px-4">
                                                 <div class="mb-4">
                                                     <label>First Name*</label>
-                                                    <input class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        type="text" name="name" placeholder="John"
+                                                    <input
+                                                        class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
+                                                        type="text" name="fname" placeholder="John"
                                                         value={{user.first_name}}>
                                                 </div>
                                             </div>
@@ -60,7 +65,7 @@
                                                     <label>Last Name*</label>
                                                     <input
                                                         class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        type="text" name="username" placeholder="Smith"
+                                                        type="text" name="lname" placeholder="Smith"
                                                         value={{user.last_name}}>
                                                 </div>
                                             </div>
@@ -71,7 +76,8 @@
                                                     <label>Email/Username*</label>
                                                     <input
                                                         class="block appearance-none w-full p-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        type="text" value={{user.email}} placeholder="user@example.com">
+                                                        type="text" name="email" value={{user.email}}
+                                                        placeholder="user@example.com">
                                                 </div>
                                             </div>
                                         </div>
@@ -81,7 +87,7 @@
                                                     <label>About (optional)</label>
                                                     <textarea
                                                         class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        rows="5" placeholder="My Bio"></textarea>
+                                                        rows="5" name="bio" placeholder="My Bio"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,10 +100,10 @@
                                             type="submit">Save Changes</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@ urlpatterns = [
     path('search',views.Search, name="search"),
     path('closemessage',views.CloseMessage, name="closemessage"),
     path('comment/<int:id>',views.Comments, name="comment"),
+    path('updateprofile',views.UpdateProfile, name="updateprofile"),
     path('delcomment/<int:id>',views.DeleteComment, name="delcomment"),
     path('downloadbook/<int:id>',views.Downloadbook, name="downloadbook")
 ]

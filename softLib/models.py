@@ -25,3 +25,8 @@ class Comment(models.Model):
     Like = models.IntegerField(default=0)
     def __str__(self):
         return self.Commentby.first_name
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='Profile')
+    image = models.ImageField(upload_to="images")
+    about = models.TextField()

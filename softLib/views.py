@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from softLib.models import Book,Comment
+from softLib.models import Book,Comment,Profile
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 import os
@@ -41,10 +41,22 @@ def Search(request):
     if not Booksearch:
         Booksearch = Book.objects.filter(Category__icontains='Not Found')
         Booksearch = Booksearch[0]
-        print('Book:-',Booksearch)
     global Query
     Query = query
     return redirect('/#search')
+
+def UpdateProfile(request):
+    if request.method == 'POST':
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        email = request.POST['email']
+        username = email
+        bio = request.POST['bio']
+        pass2 = request.POST['pass2']
+        image = request.POST['profilephoto']
+        print(fname,lname,email,bio)
+        return redirect('/')
+
 def CloseMessage(request):
     global Message
     Message=""
@@ -95,6 +107,7 @@ def Downloadbook(request,id):
     Url = '/book/'+str(id)
     Message = "Download Successfully"
     return redirect(Url)
+
 @login_required
 def Comments(request,id):
     if request.method =='POST':
@@ -109,6 +122,7 @@ def Comments(request,id):
             book.save()
         Url = '/book/'+str(id)
         return redirect(Url)
+
 @login_required
 def DeleteComment(request,id):
     global Message
@@ -122,6 +136,7 @@ def DeleteComment(request,id):
     Message = "Comment deleted Successfully"
     # Comment.save()
     return redirect(Url)
+
 @login_required
 def Userupload(request):
     global Message
