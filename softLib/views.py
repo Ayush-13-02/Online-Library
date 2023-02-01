@@ -44,7 +44,7 @@ def Search(request):
     global Query
     Query = query
     return redirect('/#search')
-
+@login_required
 def UpdateProfile(request):
     if request.method == 'POST':
         fname = request.POST['fname']
@@ -52,10 +52,14 @@ def UpdateProfile(request):
         email = request.POST['email']
         username = email
         bio = request.POST['bio']
-        pass2 = request.POST['pass2']
+        userid = request.user.id
+        user = User(id=userid,username=username,email=email,first_name=fname,last_name=lname)
+        user.save()
         image = request.POST['profilephoto']
-        print(fname,lname,email,bio)
-        return redirect('/')
+        profile = Profile(user=request.user,image=image,about=bio)
+        profile.save()
+        print(userid,fname,lname,email,bio)
+        return redirect('/profile')
 
 def CloseMessage(request):
     global Message
@@ -90,7 +94,7 @@ def Bookone(request,rid):
         return render(request,'Comment.html',data)
 
 @login_required
-def Profile(request):
+def EProfile(request):
     params = {
         'edit':True,
         'upload':False,
