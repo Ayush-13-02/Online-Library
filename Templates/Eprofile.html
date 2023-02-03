@@ -9,15 +9,21 @@
         <div
             class="flex items-center space-x-2 my-1 px-2 py-2 shadow shadow-blue-600 max-w-full bg-gray-800 border-t rounded">
             <div class="flex-auto p-6">
-                <form action="/updateprofile" method="post">
+                <form action="/updateprofile" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="e-profile">
                         <div class="flex flex-row flex-wrap ">
                             <div class="max-w-full col-sm-auto mb-3">
                                 <div id="profilephoto" class="w-32 h-32 xl:w-36 xl:h-36 flex-grow-0 flex-shrink-0">
+                                    {% if user.Profile.image %}
+                                    <img id="defaultpic" src='/media/{{user.Profile.image}}'
+                                        class="w-full h-full object-cover object-left-top rounded-full shadow-xl flex-grow-0 flex-shrink-0"
+                                        alt='...' />
+                                    {% else %}
                                     <img id="defaultpic" src='/static/Media/unkowndp.jpg'
                                         class="w-full h-full object-cover object-left-top rounded-full shadow-xl flex-grow-0 flex-shrink-0"
                                         alt='...' />
+                                    {% endif %}
                                 </div>
                             </div>
                             <div
@@ -33,7 +39,7 @@
                                             class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-2 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600">
                                             <i class="fa fa-fw fa-camera"></i>
                                             <span>Change Photo</span>
-                                            <input onchange="Profilephoto(event)" type="file" name="profilephoto"
+                                            <input onchange="Profilephoto(event)" type="file" name="image"
                                                 id="Userpic" class="opacity-0 w-0" />
                                         </label>
                                     </div>
@@ -56,7 +62,7 @@
                                                     <label>First Name*</label>
                                                     <input
                                                         class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        type="text" name="fname" placeholder="John"
+                                                        type="text" name="first_name" placeholder="John"
                                                         value={{user.first_name}}>
                                                 </div>
                                             </div>
@@ -65,7 +71,7 @@
                                                     <label>Last Name*</label>
                                                     <input
                                                         class="block appearance-none w-full p-2 mb-1 leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        type="text" name="lname" placeholder="Smith"
+                                                        type="text" name="last_name" placeholder="Smith"
                                                         value={{user.last_name}}>
                                                 </div>
                                             </div>
@@ -73,10 +79,19 @@
                                         <div class="flex flex-wrap ">
                                             <div class="relative flex-grow max-w-full flex-1 px-4">
                                                 <div class="mb-4">
-                                                    <label>Email/Username*</label>
+                                                    <label>Email*</label>
                                                     <input
                                                         class="block appearance-none w-full p-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        type="text" name="email" value={{user.email}}
+                                                        type="email" name="email" value={{user.email}}
+                                                        placeholder="user@example.com">
+                                                </div>
+                                            </div>
+                                            <div class="relative flex-grow max-w-full flex-1 px-4">
+                                                <div class="mb-4">
+                                                    <label>Username*</label>
+                                                    <input
+                                                        class="block appearance-none w-full p-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
+                                                        type="text" name="username" value={{user.username}}
                                                         placeholder="user@example.com">
                                                 </div>
                                             </div>
@@ -84,10 +99,13 @@
                                         <div class="flex flex-wrap ">
                                             <div class="relative flex-grow max-w-full flex-1 px-4 mb-3">
                                                 <div class="mb-4">
-                                                    <label>About (optional)</label>
+                                                    <label>About (optional) {{user.Profile.about}}</label>
+                                                    <textarea name="about" class="block bg-gray-900 w-full shadow-inner px-2 py-1 mb-1 border-gray-800 rounded" rows="5">{{user.Profile.about}}</textarea>
                                                     <textarea
-                                                        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
-                                                        rows="5" name="bio" placeholder="My Bio"></textarea>
+                                                        class="hidden appearance-none w-full py-1 px-2 mb-1 text-base leading-normal shadow-inner bg-gray-900 text-white border border-gray-800 rounded"
+                                                        rows="5" name="about" placeholder="My Bio" value={{user.Profile.about}}>
+                                                        {{user.Profile.about}}
+                                                    </textarea>
                                                 </div>
                                             </div>
                                         </div>

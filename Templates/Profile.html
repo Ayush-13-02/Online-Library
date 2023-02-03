@@ -33,8 +33,13 @@
                             <div class="flex-none w-auto max-w-full px-3">
                                 <div
                                     class="text-size-base ease-soft-in-out h-16 w-16 relative inline-flex items-center justify-center rounded-xl text-white transition-all duration-200">
+                                    {% if user.Profile.image %}
+                                    <img src="media/{{user.Profile.image}}" alt="profile_image"
+                                        class="w-full shadow-sm rounded-xl">
+                                    {% else %}
                                     <img src="/static/Media/unkowndp.jpg" alt="profile_image"
-                                        class="w-full shadow-soft-sm rounded-xl">
+                                    class="w-full shadow-sm rounded-xl">
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="flex-none w-auto max-w-full px-3 my-auto">

@@ -6,6 +6,7 @@ from django.contrib import messages
 from softLib.models import Book,Comment,Profile
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
+from .forms import UserUpdateForm,ProfileUpdateForm
 import os
 from django.conf import settings
 import PyPDF2
@@ -46,19 +47,23 @@ def Search(request):
     return redirect('/#search')
 @login_required
 def UpdateProfile(request):
+    global Message
+    user_form = UserUpdateForm
+    profile_form = ProfileUpdateForm
     if request.method == 'POST':
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        email = request.POST['email']
-        username = email
-        bio = request.POST['bio']
-        userid = request.user.id
-        user = User(id=userid,username=username,email=email,first_name=fname,last_name=lname)
-        user.save()
-        image = request.POST['profilephoto']
-        profile = Profile(user=request.user,image=image,about=bio)
-        profile.save()
-        print(userid,fname,lname,email,bio)
+        post_data = request.POST or None
+        file_data = request.FILES or None
+        user_form = UserUpdateForm(post_data,instance=request.user)
+        profile_form = ProfileUpdateForm(post_data,file_data,instance=request.user.Profile)
+        
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            Message = "Updated Successfully"
+        else:
+            Message = "Invaild Data"
+            return redirect('/profile')
+
         return redirect('/profile')
 
 def CloseMessage(request):
@@ -73,9 +78,10 @@ def Bookone(request,rid):
         comment = Comment.objects.filter(Book_id = book[0])
         Path = str(settings.BASE_DIR)+'/media/'+str(book[0].pdf)
         filesize = os.path.getsize(Path)
+        filesize = round(filesize/1024,2)
         kb = True
-        if(filesize >= pow(1024,2)):
-            filesize = round(filesize/pow(1024,2),2)
+        if(filesize >= 1024):
+            filesize = round(filesize/1024,2)
             kb = False
         
         file = open(Path,'rb')
@@ -173,14 +179,16 @@ def Userupload(request):
 def Login(request):
     global Message
     if request.method == 'POST':
-        loginusernameame = request.POST['email']
+        loginusername = request.POST['email']
         loginpassword = request.POST['pass']
-        user = authenticate(username = loginusernameame, password = loginpassword)  
+        print(request,loginusername)
+        user = authenticate(username = loginusername, password = loginpassword)  
         if user is not None:
             login(request,user)
             Message = "Successfully logged In"
             return redirect('/')
         else:
+            print("User:-",user)
             Message = "Email or Password is wrong"
             return redirect('/login')
     elif request.method == 'GET':
